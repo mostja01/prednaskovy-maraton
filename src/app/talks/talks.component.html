@@ -1,0 +1,8 @@
+<div>
+  <h1>Přednášky</h1>
+  <div *ngFor="let talk of talks | async">
+    <h2>{{talk.name}}</h2>
+  </div>
+  <input placeholder="Název přednášky" #talkName>
+  <button (click)="createTalk(talkName.value)"></button>
+</div>
