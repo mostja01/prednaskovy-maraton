@@ -15,6 +15,9 @@ export class NavComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoggedIn$.subscribe(data => {
+      console.log(data);
+    });
   }
 
   logOut() {

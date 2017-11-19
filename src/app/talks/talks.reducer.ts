@@ -16,7 +16,7 @@ const defaultTalk = {
   entities: {
     '123': {
       id: '123',
-      name: 'Úvod'
+      name: 'Testovací přednáška'
     }
   }
 };

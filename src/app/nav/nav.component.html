@@ -13,6 +13,7 @@
     </div>
     <div [class.collapse]="window.innerWidth < 768">
       <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn$ | async">
+        <li>{{(isLoggedIn$ | async)?.email}}</li>
         <li><button class="btn btn-link navbar-btn" routerLink="/account/profile">Profile</button></li>
         <li><button class="btn btn-link navbar-btn" routerLink="/account/info">Account</button></li>
         <li><button class="btn btn-link navbar-btn" (click)="logOut()">Log Out</button></li>
