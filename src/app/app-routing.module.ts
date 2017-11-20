@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'sign-up',
     loadChildren: './sign-up/sign-up.module#SignUpModule'
   },
+  {
+    path: 'partners',
+    loadChildren: './partners/partners.module#PartnersModule'
+  },
 ];
 
 @NgModule({
