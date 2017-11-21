@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-sign-in',
@@ -26,14 +27,20 @@ export class SignInComponent implements OnInit, OnDestroy {
       'maxlength': 'Password cannot be more than 40 characters long.',
     }
   };
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+
+  constructor(private fb: FormBuilder,
+              private dialogRef: MatDialogRef<SignInComponent>,
+              private auth: AuthService) {
+  }
 
   ngOnInit() {
     this.buildForm();
   }
 
   login(): void {
-    this.auth.emailLogin(this.signInForm.value['email'], this.signInForm.value['password']);
+    this.auth.emailLogin(this.signInForm.value['email'], this.signInForm.value['password']).then(success => {
+      this.closeDialog();
+    });
   }
 
   buildForm(): void {
@@ -73,6 +80,10 @@ export class SignInComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
   }
 
   ngOnDestroy(): void {

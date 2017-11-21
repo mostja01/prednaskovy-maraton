@@ -10,17 +10,18 @@
       </button>
       <a class="navbar-brand" routerLink="/">Domů</a>
       <a class="navbar-brand" routerLink="/talks">Seznam přednášek</a>
+      <a class="navbar-brand" routerLink="/rules">Pravidla akce</a>
     </div>
     <div [class.collapse]="window.innerWidth < 768">
       <ul class="nav navbar-nav navbar-right" *ngIf="isLoggedIn$ | async">
-        <li>{{(isLoggedIn$ | async)?.email}}</li>
-        <li><button class="btn btn-link navbar-btn" routerLink="/account/profile">Profile</button></li>
-        <li><button class="btn btn-link navbar-btn" routerLink="/account/info">Account</button></li>
+        <li class="loggedUser">{{displayName}}</li>
         <li><button class="btn btn-link navbar-btn" (click)="logOut()">Log Out</button></li>
       </ul>
       <ul class="nav navbar-nav navbar-right" *ngIf="!(isLoggedIn$ | async)">
         <li><button routerLink="/sign-up" class="btn btn-default navbar-btn">Registrovat se</button></li>
-        <li><button routerLink="/sign-up" class="btn btn-link navbar-btn">Přihlásit se</button></li>
+        <li>
+          <button class="btn btn-link navbar-btn" (click)="openSignInDialog()">Přihlásit se</button>
+        </li>
       </ul>
     </div>
   </div>

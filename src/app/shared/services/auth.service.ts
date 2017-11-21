@@ -65,7 +65,7 @@ export class AuthService {
     } else if (this.currentUserAnonymous) {
       return 'Anonymous';
     } else {
-      return this.authState['displayName'] || 'User without a Name';
+      return this.authState['displayName'] || this.authState['email'];
     }
   }
 
@@ -102,10 +102,16 @@ export class AuthService {
 
   //// Anonymous Auth ////
 
-  emailSignUp(email: string, password: string) {
+  emailSignUp(email: string, password: string, name: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
+        user.updateProfile({
+          displayName: name,
+        }).catch(
+          (error) => {
+            console.log(error);
+          });
         this.updateUserData();
       })
       .catch(error => console.log(error));

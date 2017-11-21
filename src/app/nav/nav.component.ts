@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services/auth.service';
+import { SignInComponent } from '../sign-in/sign-in.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +13,8 @@ export class NavComponent implements OnInit {
   isLoggedIn$ = this.authService.currentUserObservable;
   window = window;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -20,7 +23,17 @@ export class NavComponent implements OnInit {
     });
   }
 
+  get displayName() {
+    return this.authService.currentUserDisplayName;
+  }
+
   logOut() {
     this.authService.signOut();
+  }
+
+  openSignInDialog(): void {
+    this.dialog.open(SignInComponent, {
+      disableClose: false,
+    });
   }
 }

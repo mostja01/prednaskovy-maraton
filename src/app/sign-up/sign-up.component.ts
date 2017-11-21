@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
   }
 
   signup(): void {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
+    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password'], this.userForm.value['name']);
   }
 
   login(): void {
@@ -65,6 +65,7 @@ export class SignUpComponent implements OnInit {
         Validators.maxLength(25)
       ]
       ],
+      'name': [''],
     });
 
     this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));

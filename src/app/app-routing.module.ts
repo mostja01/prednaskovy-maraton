@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'partners',
     loadChildren: './partners/partners.module#PartnersModule'
   },
+  {
+    path: 'rules',
+    loadChildren: './rules/rules.module#RulesModule'
+  },
 ];
 
 @NgModule({
