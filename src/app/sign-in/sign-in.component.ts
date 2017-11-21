@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
-  selector: 'app-sign-up',
-  templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.css']
 })
-export class SignUpComponent implements OnInit {
-
-  userForm: FormGroup;
-  newUser = true; // to toggle login or signup form
-  passReset = false; // set to true when password reset is triggered
+export class SignInComponent implements OnInit, OnDestroy {
+  signInForm: FormGroup;
+  subscription;
   formErrors = {
     'email': '',
     'password': ''
@@ -28,32 +26,18 @@ export class SignUpComponent implements OnInit {
       'maxlength': 'Password cannot be more than 40 characters long.',
     }
   };
-
   constructor(private fb: FormBuilder, private auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.buildForm();
   }
 
-  toggleForm() {
-    this.newUser = !this.newUser;
-  }
-
-  signup(): void {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
-  }
-
   login(): void {
-    this.auth.emailLogin(this.userForm.value['email'], this.userForm.value['password']);
-  }
-
-  resetPassword() {
-    this.auth.resetPassword(this.userForm.value['email'])
-      .then(() => this.passReset = true);
+    this.auth.emailLogin(this.signInForm.value['email'], this.signInForm.value['password']);
   }
 
   buildForm(): void {
-    this.userForm = this.fb.group({
+    this.signInForm = this.fb.group({
       'email': ['', [
         Validators.required,
         Validators.email
@@ -67,14 +51,13 @@ export class SignUpComponent implements OnInit {
       ],
     });
 
-    this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
+    this.subscription = this.signInForm.valueChanges.subscribe(data => this.onValueChanged(data));
     this.onValueChanged(); // reset validation messages
   }
 
-  // Updates validation state on form changes.
   onValueChanged(data?: any) {
-    if (!this.userForm) { return; }
-    const form = this.userForm;
+    if (!this.signInForm) { return; }
+    const form = this.signInForm;
     for (const field in this.formErrors) {
       if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {
         // clear previous error message (if any)
@@ -90,5 +73,9 @@ export class SignUpComponent implements OnInit {
         }
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
