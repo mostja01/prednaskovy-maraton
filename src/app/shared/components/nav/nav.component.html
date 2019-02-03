@@ -12,18 +12,33 @@
         <a class="nav-link" routerLink="/talks" routerLinkActive="active">Seznam přednášek</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="/contact" routerLinkActive="active">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/partners" routerLinkActive="active">Partneři</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="/warm-up" routerLinkActive="active">Warm-up</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" *ngIf="!(isLoggedIn$ | async)">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/sign-up">Registrovat se</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/sign-in">Přihlásit se</a>
       </li>
     </ul>
   </div>
 </nav>
-<div class="jumbotron">
-  <div class="container">
-    <h1 date-e2e="title">Přednáškový maraton 2019</h1>
-    <p>9. 3. 2019 Gymnázium Zábřeh</p>
-    <!--<p><a class="btn btn-primary btn-lg" role="button" routerLink="/sign-up">See more »</a></p>-->
-  </div>
-</div>
+<!--<div class="jumbotron">-->
+  <!--<div class="container">-->
+    <!--<h1 date-e2e="title">Přednáškový maraton 2019</h1>-->
+    <!--<p>9. 3. 2019 Gymnázium Zábřeh</p>-->
+    <!--&lt;!&ndash;<p><a class="btn btn-primary btn-lg" role="button" routerLink="/sign-up">See more »</a></p>&ndash;&gt;-->
+  <!--</div>-->
+<!--</div>-->
+
 
 <!--<nav class="navbar navbar-default">-->
   <!--<div class="container navbar-fluid">-->

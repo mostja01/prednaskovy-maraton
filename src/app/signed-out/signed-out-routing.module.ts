@@ -3,6 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {TalksComponent} from './talks/talks.component';
 import {WarmUpComponent} from './warm-up/warm-up.component';
+import {ContactComponent} from './contact/contact.component';
+import {PartnersComponent} from './partners/partners.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
+import {SignInComponent} from './sign-in/sign-in.component';
 
 const routes: Routes = [
   {
@@ -17,6 +21,22 @@ const routes: Routes = [
     path: 'warm-up',
     component: WarmUpComponent,
   },
+  {
+    path: 'contact',
+    component: ContactComponent,
+  },
+  {
+    path: 'partners',
+    component: PartnersComponent,
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent,
+  },
+  {
+    path: 'sign-in',
+    component: SignInComponent,
+  }
 ];
 
 @NgModule({

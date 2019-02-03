@@ -14,3 +14,7 @@
   background: url('../../../../assets/img/maraton_title.jpg') no-repeat;
   background-size: cover;
 }
+
+nav {
+  margin-bottom: 10px;
+}
