@@ -3,6 +3,9 @@ import { Component, OnInit } from '@angular/core';
 // import { SignInComponent } from '../sign-in/sign-in.component';
 import { MatDialog } from '@angular/material';
 import {AuthService} from '../../services/auth.service';
+import {AppUser} from '../../model/appUser';
+import {SignInComponent} from '../sign-in/sign-in.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -10,18 +13,23 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
+  public user: AppUser = null;
   // isLoggedIn$ = this.authService.currentUserObservable;
   window = window;
 
   constructor(private authService: AuthService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private router: Router,
+              ) {
   }
 
-  ngOnInit() {
-    // this.isLoggedIn$.subscribe(data => {
-    //   console.log(data);
-    // });
+  public ngOnInit() {
+    this.authService.userData.subscribe(user => {
+      this.user = user;
+      if (user && (!user.hasAllObligatoryFields() || !user.willAttend)) {
+        this.router.navigate(['/profile']);
+      }
+    });
   }
 
   // get displayName() {
@@ -29,12 +37,12 @@ export class NavComponent implements OnInit {
   // }
 
   logOut() {
-    // this.authService.signOut();
+    this.authService.signOut();
   }
 
   openSignInDialog(): void {
-    // this.dialog.open(SignInComponent, {
-    //   disableClose: false,
-    // });
+    this.dialog.open(SignInComponent, {
+      disableClose: false,
+    });
   }
 }

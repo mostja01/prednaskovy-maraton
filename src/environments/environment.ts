@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'sadfdsffff45f45sf-fd6f6f26fdsf6a-fsdfs',
+    apiKey: 'AIzaSyD2Og-SDq-dGEKw8cRHQiggtfXsDrGaSpc',
     authDomain: 'prednaskovymaraton2019.firebaseapp.com',
-    databaseURL: 'prednaskovymaraton2019.firebaseapp.com',
+    databaseURL: 'https://prednaskovymaraton2019.firebaseio.com',
     projectId: 'prednaskovymaraton2019',
     storageBucket: 'prednaskovymaraton2019.appspot.com',
-    messagingSenderId: 'fs62fs62f6'
+    messagingSenderId: '706616820117'
   }
 };
 

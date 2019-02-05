@@ -1,0 +1,81 @@
+.talk {
+  position: relative;
+  width: 350px;
+  display: inline-block;
+  float: left;
+  border-top: 5px solid #26B3A2;
+  background: #fafafa;
+  cursor: pointer;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);;
+}
+
+.label {
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: -12px;
+  background: #26B3A2;
+  border-radius: 4px;
+  padding: 4px;
+  width: 70px;
+  height: 20px;
+}
+
+.vote {
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  bottom: 4px;
+}
+.vote mat-icon {
+  font-size: 25pt;
+}
+
+.vote mat-icon.up:hover {
+  color: chartreuse;
+}
+
+.vote mat-icon.up {
+  color: lightgreen;
+}
+
+.vote mat-icon.down:hover {
+  color: gray;
+}
+
+.vote mat-icon.down {
+  color: black;
+}
+
+.talk:hover {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+}
+
+.talkHeader {
+  padding: 10px 10px 0 10px;
+  height: 70px;
+  overflow: hidden;
+}
+
+.talkContent {
+  display: block;
+  padding: 5px 15px;
+  height: 150px;
+  overflow: hidden;
+  text-align: justify;
+}
+
+.talkTopicLine {
+  display: block;
+  padding: 5px 15px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.talkFooter {
+  padding: 5px 10px;
+  height: 50px;
+  background: #26B3A2;
+  color: white;
+  font-size: 11pt;
+}

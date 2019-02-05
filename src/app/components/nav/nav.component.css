@@ -11,7 +11,7 @@
 }
 
 .jumbotron {
-  background: url('../../../../assets/img/maraton_title.jpg') no-repeat;
+  background: url('../../../assets/img/maraton_title.jpg') no-repeat;
   background-size: cover;
 }
 
