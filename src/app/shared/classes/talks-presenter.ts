@@ -7,8 +7,6 @@ import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from
 import {Talk, TopicLine} from '../../model/talk';
 import {map, take, zipAll} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
-import {forkJoin} from 'rxjs/internal/observable/forkJoin';
-import {zip} from 'rxjs/internal/observable/zip';
 import {ObservableInput} from 'rxjs/src/internal/types';
 
 export class TalksPresenter {
@@ -40,12 +38,11 @@ export class TalksPresenter {
   }
 
   private getTalks(): Subject<Talk[]> {
-    const out: Talk[] = [];
-    const userStreams: Array<ObservableInput<any>> = [];
     const outStream = new Subject<Talk[]>();
 
     this.talks.subscribe((talkActions: DocumentChangeAction<any>[]) => {
-      console.log('got talks');
+      const out: Talk[] = [];
+      const userStreams: Array<ObservableInput<any>> = [];
       talkActions.forEach((talkAction: DocumentChangeAction<any>) => {
         const data = talkAction.payload.doc.data();
         const id = talkAction.payload.doc.id;

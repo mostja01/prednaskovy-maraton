@@ -33,7 +33,8 @@
       <h2 *ngIf="newAddedTalks.length > 0">Nedávno přidané</h2>
       <app-talk-preview *ngFor="let talk of newAddedTalks" [talk]="talk" [user]="user"></app-talk-preview>
       <h2>Registrované přednášky</h2>
-      <app-talk-preview *ngFor="let talk of orderedTalks" [talk]="talk" [user]="user"></app-talk-preview>
+      <app-talk-preview
+        *ngFor="let talk of orderedTalks" [talk]="talk" [user]="user"></app-talk-preview>
     </div>
   </div>
   <div *ngIf="!(talks | async)">

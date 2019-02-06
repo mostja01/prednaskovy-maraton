@@ -19,6 +19,9 @@
   padding: 4px;
   width: 70px;
   height: 20px;
+  color: white;
+  line-height: 0.8;
+  font-weight: bold;
 }
 
 .vote {
