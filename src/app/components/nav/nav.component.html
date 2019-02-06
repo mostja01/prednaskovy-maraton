@@ -23,16 +23,21 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="!(authService.userData | async)">
-      <li><button routerLink="/sign-up" class="btn btn-default navbar-btn">Registrovat se</button></li>
-      <li>
-        <button class="btn btn-link navbar-btn" (click)="openSignInDialog()">Přihlásit se</button>
+      <li class="loggedUser">
+        <a href="javascript:" routerLink="/sign-up">Registrovat se</a>
+      </li>
+      <li class="loggedUser">
+        <a href="javascript:" (click)="openSignInDialog()">Přihlásit se</a>
       </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right" *ngIf="authService.userData | async">
       <li class="loggedUser">
-        <a routerLink="/profile">{{user.name || user.email}}</a></li>
-      <li><button class="btn btn-link navbar-btn" (click)="logOut()">Log Out</button></li>
+        <a routerLink="/profile">{{user.name || user.email}}</a>
+      </li>
+      <li class="loggedUser">
+        <a href="javascript:" (click)="logOut()">Log Out</a>
+      </li>
     </ul>
   </div>
 </nav>

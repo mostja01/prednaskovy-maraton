@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 import {auth, User} from 'firebase';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
@@ -31,7 +31,7 @@ export class AuthService {
   constructor(private router: Router,
               public afAuth: AngularFireAuth,
               private afs: AngularFirestore
-              ) {
+  ) {
 
     this.afAuth.authState.subscribe((data: User | null) => {
       this.authState = data;
@@ -66,7 +66,6 @@ export class AuthService {
   // logout() {
   //   this.afAuth.auth.signOut();
   // }
-
 
 
   // Returns true if user is logged in
@@ -146,8 +145,10 @@ export class AuthService {
   // }
 
   signOut(): void {
-    this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
+    this.afAuth.auth.signOut().then((data) => {
+      console.log('sign out', data);
+      this.router.navigate(['/']);
+    });
   }
 
 

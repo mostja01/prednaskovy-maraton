@@ -47,7 +47,10 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="createTalk()" [disabled]="!addTalkForm.valid">{{talk?'Upravit':'Přidat'}}
+    <button
+      mat-raised-button
+      (click)="createTalk()"
+      [disabled]="!addTalkForm.valid">{{talk?'Upravit':'Přidat'}}
       přednášku
     </button>
     <button mat-raised-button mat-dialog-close>Zrušit</button>

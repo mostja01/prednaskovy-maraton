@@ -40,8 +40,10 @@
           Stravování:
         </div>
         <div class="col-md-6">
-          <mat-checkbox [disabled]="!user.willAttend || registrationClosed" name="lunch"
-                        [formControlName]="'lunch'"></mat-checkbox>
+          <mat-checkbox
+            *ngIf="user.willAttend && !registrationClosed"
+            name="lunch"
+            formControlName="lunch"></mat-checkbox>
         </div>
       </div>
       <br>
@@ -50,7 +52,7 @@
           Jsem student Gymnázia Zábřeh:
         </div>
         <div class="col-md-6">
-          <mat-checkbox [disabled]="!user.willAttend" name="gyza" [formControlName]="'gyza'"></mat-checkbox>
+          <mat-checkbox *ngIf="user.willAttend" name="gyza" formControlName="gyza"></mat-checkbox>
         </div>
       </div>
       <br>

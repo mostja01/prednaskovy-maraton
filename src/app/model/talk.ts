@@ -17,13 +17,14 @@ export interface Talk {
   votesCount: number;
   voters: Array<string>;
   created: Date;
+  noteForOrg: string;
 }
 
 export interface TopicLine {
   id?: string;
   name: string;
-  description: string;
+  // description: string;
   color: string;
-  managerId: string;
-  manager?: AppUser;
+  // managerId: string;
+  // manager?: AppUser;
 }

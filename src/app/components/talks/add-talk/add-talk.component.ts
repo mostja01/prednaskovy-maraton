@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppUser} from '../../../model/appUser';
-import {TopicLine} from '../../../model/talk';
+import {Talk, TopicLine} from '../../../model/talk';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {TopicLinesService} from '../../../services/topic-lines.service';
 import {randomColor} from '../../../shared/random-color';
@@ -87,15 +87,4 @@ export class AddTalkComponent {
       });
     }
   }
-}
-
-export interface Talk {
-  talkId?: string;
-  noteForOrg?: string;
-  line?: TopicLine;
-  duration?: string;
-  created: string;
-  name: string;
-  userUid: string;
-  description?: string;
 }

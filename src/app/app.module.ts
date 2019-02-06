@@ -20,7 +20,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
-import {ProfileComponent} from './components/profile/profile.component';
 import {TalksModule} from './components/talks/talks.module';
 import {ProfileModule} from './components/profile/profile.module';
 

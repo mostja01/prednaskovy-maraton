@@ -1,12 +1,15 @@
-import { randomColor } from '../random-color';
-import { Utils } from '../../model/utils';
-import { TopicLinesService } from '../../services/topic-lines.service';
-import { AppUser } from '../../model/appUser';
+import {randomColor} from '../random-color';
+import {Utils} from '../../model/utils';
+import {TopicLinesService} from '../../services/topic-lines.service';
+import {AppUser} from '../../model/appUser';
 import {Observable} from 'rxjs/internal/Observable';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Talk, TopicLine} from '../../model/talk';
-import {map, mergeMap} from 'rxjs/operators';
-import {combineLatest} from 'rxjs/internal/observable/combineLatest';
+import {map, take, zipAll} from 'rxjs/operators';
+import {Subject} from 'rxjs/internal/Subject';
+import {forkJoin} from 'rxjs/internal/observable/forkJoin';
+import {zip} from 'rxjs/internal/observable/zip';
+import {ObservableInput} from 'rxjs/src/internal/types';
 
 export class TalksPresenter {
   public talks: Observable<DocumentChangeAction<any>[]>;
@@ -27,40 +30,53 @@ export class TalksPresenter {
   }
 
   public async makeTalksView() {
-    this.getTalks().then((talksStream) => {
-      talksStream.subscribe((talks) => {
-        combineLatest(talks).subscribe((talksData) => {
-          this.talksView = [];
-          talksData.forEach((talkData: any) => {
-            this.talksView.push(talkData);
-          });
-          this.fillLinesData();
-        });
+    this.getTalks().subscribe((talks: Talk[]) => {
+      this.talksView = [];
+      talks.forEach((talkData: any) => {
+        this.talksView.push(talkData);
       });
+      this.fillLinesData();
     });
   }
 
-  private async getTalks() {
-    return this.talks.pipe(mergeMap(async (talkActions: any) => {
-      return await Promise.all(talkActions.map(async (talkAction) => {
+  private getTalks(): Subject<Talk[]> {
+    const out: Talk[] = [];
+    const userStreams: Array<ObservableInput<any>> = [];
+    const outStream = new Subject<Talk[]>();
+
+    this.talks.subscribe((talkActions: DocumentChangeAction<any>[]) => {
+      console.log('got talks');
+      talkActions.forEach((talkAction: DocumentChangeAction<any>) => {
         const data = talkAction.payload.doc.data();
         const id = talkAction.payload.doc.id;
         data.talkRef = talkAction.payload.doc;
         data.talkId = id;
         data.created = new Date(data.created);
-        return this.getUserById(data.userId).pipe(map((author) => {
-          const talkWithUser: Talk = {...data};
-          talkWithUser.userName = author.name;
-          talkWithUser.color = talkWithUser.color ? talkWithUser.color : randomColor();
-          talkWithUser.voters = talkWithUser.voters ? talkWithUser.voters : [];
-          talkWithUser.hasVoted = talkWithUser.voters.findIndex((voterId) => {
-            return !this.user || voterId === this.user.id;
-          }) >= 0;
-          talkWithUser.votesCount = talkWithUser.voters.length;
-          return talkWithUser;
-        }));
-      }));
-    }));
+
+        userStreams.push(this.getUserById(data.userId).pipe(
+          map((author) => {
+            const talkWithUser: Talk = {...data};
+            talkWithUser.userName = author.name;
+            talkWithUser.color = talkWithUser.color ? talkWithUser.color : randomColor();
+            talkWithUser.voters = talkWithUser.voters ? talkWithUser.voters : [];
+            talkWithUser.hasVoted = talkWithUser.voters.findIndex((voterId) => {
+              return !this.user || voterId === this.user.id;
+            }) >= 0;
+            talkWithUser.votesCount = talkWithUser.voters.length;
+            return talkWithUser;
+          }),
+          take(1)
+        ).toPromise());
+      });
+      Promise.all(userStreams).then((talks) => {
+        talks.forEach((talkWithUser: any) => {
+          out.push(talkWithUser);
+        });
+        outStream.next(out);
+      });
+    });
+
+    return outStream;
   }
 
   private fillLinesData() {
