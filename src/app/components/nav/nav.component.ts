@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { AuthService } from '../shared/services/auth.service';
-// import { SignInComponent } from '../sign-in/sign-in.component';
 import { MatDialog } from '@angular/material';
 import {AuthService} from '../../services/auth.service';
 import {AppUser} from '../../model/appUser';
@@ -14,10 +12,8 @@ import {Router} from '@angular/router';
 })
 export class NavComponent implements OnInit {
   public user: AppUser = null;
-  // isLoggedIn$ = this.authService.currentUserObservable;
-  window = window;
 
-  constructor(private authService: AuthService,
+  constructor(public authService: AuthService,
               private dialog: MatDialog,
               private router: Router,
               ) {
@@ -31,10 +27,6 @@ export class NavComponent implements OnInit {
       }
     });
   }
-
-  // get displayName() {
-  //   return this.authService.currentUserDisplayName;
-  // }
 
   logOut() {
     this.authService.signOut();
