@@ -20,14 +20,22 @@ export class SignInComponent implements OnInit, OnDestroy {
   };
   public validationMessages = {
     'email': {
-      'required': 'Email is required.',
-      'email': 'Email must be a valid email'
+      // 'required': 'Email is required.',
+      'required': 'E-mail je povinný údaj',
+      // 'email': 'Email must be a valid email'
+      'email': 'E-mail má nepltaný formát'
     },
     'password': {
-      'required': 'Password is required.',
-      'pattern': 'Password must be include at one letter and one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
+      // 'required': 'Password is required.',
+      'required': 'Heslo je povinný údaj',
+      // 'pattern': 'Password must be include at one letter and one number.',
+      'pattern': 'Heslo musí obsahovat minimálně jedno písmeno a jednu číslici',
+      // 'minlength': 'Password must be at least 4 characters long.',
+      // podle odzkoušení 6, ne 4 #lgrund
+      'minlength': 'Heslo musí obsahovat minimálně 6 znaků',
+      // 'maxlength': 'Password cannot be more than 40 characters long.',
+      // podle odzkoušení 25, ne 40 #lgrund
+      'maxlength': 'Heslo nesmí být delší než 25 znaků',
     }
   };
   constructor(private fb: FormBuilder,
