@@ -136,13 +136,11 @@ export class AuthService {
   }
 
   // // Sends email allowing user to reset password
-  // resetPassword(email: string) {
-  //   const fbAuth = firebase.auth();
-  //
-  //   return fbAuth.sendPasswordResetEmail(email)
-  //     .then(() => console.log('email sent'))
-  //     .catch((error) => console.log(error));
-  // }
+  resetPassword(email: string) {
+    return auth().sendPasswordResetEmail(email)
+      .then(() => console.log('email sent'))
+      .catch((error) => console.log(error));
+  }
 
   signOut(): void {
     this.afAuth.auth.signOut().then((data) => {

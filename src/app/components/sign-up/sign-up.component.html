@@ -1,3 +1,60 @@
-<p>
-  sign-up works!
-</p>
+<div>
+  <form [formGroup]="userForm">
+    <h3>Registrace</h3>
+    <p>Registrací se přihlásíte na akci.</p>
+
+    <h2>Místo registrace se chci přihlásit přes sociální síť</h2>
+
+    <button (click)="signInWithGoogle()" class="button btn-social btn-google">
+      <i class="fa fa-google-plus fa-lg"></i> Přihlásit se přes účet Google
+    </button>
+
+    <h2>Klasická registrace pomocí emailu</h2>
+    <div class="row">
+      <mat-form-field>
+        <input matInput id="name" class="input" placeholder="Jméno" formControlName="name">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <input matInput type="email" id="email" class="input" placeholder="Email" formControlName="email" required>
+        <mat-error *ngIf="formErrors.email" class="notification is-danger">
+          {{ formErrors.email }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <input matInput type="password" id="password" class="input"
+               placeholder="Password" formControlName="password" required>
+        <mat-error *ngIf="formErrors.password" class="notification is-danger">
+          {{ formErrors.password }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-checkbox [formControlName]="'lunch'">Mám zájem o jídlo na akci (zájemci o stravu budou mít vyšší vstupné)
+      </mat-checkbox>
+    </div>
+    <div class="row">
+      <mat-checkbox [formControlName]="'gyza'">Jsem student Gymnázia Zábřeh</mat-checkbox>
+    </div>
+
+    <div class="row">
+      <button mat-raised-button type="submit" class="button" (click)="signUpWithEmail()"
+              [disabled]="!userForm.valid">Registrovat se na akci
+      </button>
+    </div>
+    <ngb-alert type="danger" *ngIf="isUnknownError">
+      Neznámá chyba
+    </ngb-alert>
+  </form>
+  <p>
+    Registrací závazně potvrzují svoji účast na akci Přednáškový maraton 2018 a také potvrzuji, že jsem seznámen(a) s
+    <a routerLink="/rules"> pravidly akce </a>
+  </p>
+
+</div>

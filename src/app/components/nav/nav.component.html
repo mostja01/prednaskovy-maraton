@@ -26,15 +26,6 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav navbar-right" *ngIf="!(authService.userData | async)">
-      <li class="loggedUser">
-        <a href="javascript:" (click)="closeNavbar()" routerLink="/sign-up">Registrovat se</a>
-      </li>
-      <li class="loggedUser">
-        <a href="javascript:" (click)="closeNavbar(); openSignInDialog()">Přihlásit se</a>
-      </li>
-    </ul>
-
     <ul class="nav navbar-nav navbar-right" *ngIf="authService.userData | async">
       <li class="loggedUser">
         <a (click)="closeNavbar()" routerLink="/profile">{{user.name || user.email}}</a>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SignInComponent} from '../sign-in/sign-in.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-warm-up',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WarmUpComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialog: MatDialog,
+
+  ) { }
 
   ngOnInit() {
   }
 
+
+  openSignInDialog(): void {
+    this.dialog.open(SignInComponent, {
+      disableClose: false,
+    });
+  }
 }
