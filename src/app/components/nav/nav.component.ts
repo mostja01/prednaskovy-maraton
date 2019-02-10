@@ -12,6 +12,15 @@ import {Router} from '@angular/router';
 })
 export class NavComponent implements OnInit {
   public user: AppUser = null;
+  navbarOpen = false;
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
+  }
+
+  closeNavbar() {
+    this.navbarOpen = false;
+  }
 
   constructor(public authService: AuthService,
               private dialog: MatDialog,
