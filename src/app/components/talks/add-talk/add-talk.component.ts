@@ -55,7 +55,7 @@ export class AddTalkComponent {
       'lineId': [this.talk && this.talk.line ? this.talk.line.id : null, [
         Validators.required,
       ]],
-      'noteForOrg': [this.talk ? this.talk.noteForOrg : ''],
+      'noteForOrg': [this.talk ? this.talk.noteForOrg : '']
     });
   }
 
@@ -66,6 +66,7 @@ export class AddTalkComponent {
     }
     this.isUploading = true;
     const newTalk = {...this.addTalkForm.value};
+    newTalk.mainSchedule = false;
     newTalk.userId = this.user.fireStoreUser.ref.id;
     if (!this.isEditing) {
       newTalk.created = new Date().toISOString();

@@ -22,7 +22,7 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
               public afs: AngularFirestore,
               public topicLinesService: TopicLinesService,
               private fb: FormBuilder) {
-    super(afs, topicLinesService);
+    super(afs, topicLinesService, auth);
   }
 
   public hasAllObligatoryFields(): boolean {

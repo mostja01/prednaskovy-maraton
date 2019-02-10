@@ -8,6 +8,7 @@ import {Talk, TopicLine} from '../../model/talk';
 import {map, take, zipAll} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
 import {ObservableInput} from 'rxjs/src/internal/types';
+import {AuthService} from '../../services/auth.service';
 
 export class TalksPresenter {
   public talks: Observable<DocumentChangeAction<any>[]>;
@@ -17,7 +18,9 @@ export class TalksPresenter {
   private topicLines: Array<TopicLine> = [];
 
   constructor(public afs: AngularFirestore,
-              public topicLinesService: TopicLinesService) {
+              public topicLinesService: TopicLinesService,
+              public authService: AuthService,
+  ) {
     this.talksCollection = afs.collection<Talk[]>('talks');
     this.talks = this.talksCollection.snapshotChanges();
     this.makeTalksView().then();
@@ -25,13 +28,18 @@ export class TalksPresenter {
       this.topicLines = lines;
       this.fillLinesData();
     });
+    authService.userData.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   public async makeTalksView() {
     this.getTalks().subscribe((talks: Talk[]) => {
       this.talksView = [];
       talks.forEach((talkData: any) => {
-        this.talksView.push(talkData);
+        if (this.user || talkData.mainSchedule) {
+          this.talksView.push(talkData);
+        }
       });
       this.fillLinesData();
     });

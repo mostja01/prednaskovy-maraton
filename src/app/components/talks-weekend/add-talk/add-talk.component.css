@@ -15,3 +15,7 @@
   margin: 15px;
   background: floralwhite;
 }
+
+mat-form-field.mat-form-field{
+  display: block;
+}

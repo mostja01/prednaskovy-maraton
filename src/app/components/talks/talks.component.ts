@@ -21,7 +21,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
               public afs: AngularFirestore,
               private auth: AuthService,
               public topicLinesService: TopicLinesService) {
-    super(afs, topicLinesService);
+    super(afs, topicLinesService, auth);
   }
 
   public get newAddedTalks() {
