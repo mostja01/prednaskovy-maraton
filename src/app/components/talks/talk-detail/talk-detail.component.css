@@ -1,0 +1,41 @@
+.header {
+  min-height: 35px;
+}
+
+.header h2 {
+  margin: 0 0 10px 0;
+  font-size: 19pt;
+}
+
+.labels {
+  height: 50px;
+  font-weight: bold;
+}
+
+.labelBlock {
+  position: relative;
+  height: 25px;
+  min-width: 100px;
+  display: inline-block;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.labelBlock.long {
+  width: 500px;
+}
+
+.labelBlock span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.labelBlock mat-icon {
+  margin: 0 9px 0 0;
+}
+
+.close {
+  flex: 0 1 auto;
+  margin-left: auto;
+}

@@ -1,51 +1,65 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule} from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppComponent } from './app.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers } from './store/store.config';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { NavComponent } from './nav/nav.component';
-import { ServicesModule } from './shared/services/services.module';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFireModule } from 'angularfire2';
-import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { HomeComponent } from './home/home.component';
-import { ContentComponent } from './content/content.component';
-import { MatFormFieldModule } from '@angular/material';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SharedComponentsModule } from './shared/shared.module';
-import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {environment} from '../environments/environment';
+import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AuthService} from './services/auth.service';
+import {HomeComponent} from './components/home/home.component';
+import {WarmUpComponent} from './components/warm-up/warm-up.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {PartnersComponent} from './components/partners/partners.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {SignInComponent} from './components/sign-in/sign-in.component';
+import {NavComponent} from './components/nav/nav.component';
+import {SharedComponentsModule} from './shared/shared.module';
+import {AppRoutingModule} from './app-routing.module';
+import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularFirestoreModule} from '@angular/fire/firestore';
+import {TalksModule} from './components/talks/talks.module';
+import {ProfileModule} from './components/profile/profile.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     HomeComponent,
-    ContentComponent,
+    WarmUpComponent,
+    ContactComponent,
+    PartnersComponent,
+    SignUpComponent,
     SignInComponent,
+    NavComponent,
   ],
   imports: [
-    CommonModule,
-    BrowserAnimationsModule,
-    SharedComponentsModule,
     BrowserModule,
-    MatFormFieldModule,
-    AppRoutingModule,
-    StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25
-    }),
-    ServicesModule,
-    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    CommonModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    NgbModule.forRoot(),
+    SharedComponentsModule,
+    NgbAlertModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    TalksModule,
+    ProfileModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [SignInComponent],
+  providers: [
+    AuthService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

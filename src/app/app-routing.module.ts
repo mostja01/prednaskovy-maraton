@@ -1,6 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import {HomeComponent} from './components/home/home.component';
+import {TalksComponent} from './components/talks/talks.component';
+import {WarmUpComponent} from './components/warm-up/warm-up.component';
+import {SignInComponent} from './components/sign-in/sign-in.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {PartnersComponent} from './components/partners/partners.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -9,20 +16,32 @@ const routes: Routes = [
   },
   {
     path: 'talks',
-    loadChildren: './talks/talks.module#TalksModule'
+    component: TalksComponent,
   },
   {
-    path: 'sign-up',
-    loadChildren: './sign-up/sign-up.module#SignUpModule'
+    path: 'warm-up',
+    component: WarmUpComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
   },
   {
     path: 'partners',
-    loadChildren: './partners/partners.module#PartnersModule'
+    component: PartnersComponent,
   },
   {
-    path: 'rules',
-    loadChildren: './rules/rules.module#RulesModule'
+    path: 'sign-up',
+    component: SignUpComponent,
   },
+  {
+    path: 'sign-in',
+    component: SignInComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  }
 ];
 
 @NgModule({

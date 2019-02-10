@@ -1,0 +1,21 @@
+.userContainer {
+  width: 600px;
+}
+
+h1 {
+  margin-bottom: 15px;
+}
+
+.row {
+  height: 55px;
+}
+
+.ownTalks {
+  margin-top: 70px;
+}
+
+app-talk-preview {
+  margin: 20px 10px;
+  position: relative;
+  display: inline-block;
+}

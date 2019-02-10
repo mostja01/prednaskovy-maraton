@@ -1,0 +1,79 @@
+<div class="profile" *ngIf="user">
+  <div class="userContainer">
+    <p *ngIf="!hasAllObligatoryFields()">
+      Vyplňte prosím všechna povinná pole.
+    </p>
+
+    <form [formGroup]="profileForm">
+      <ngb-alert type="danger" *ngIf="hasAllObligatoryFields() && !user.willAttend">
+        <p>Nemáte ještě potvrzenou osobní účast na akci. Pomocí tlačítka níže potvrďte prosím Vaši účast.</p>
+        <br>
+        <button mat-raised-button (click)="save()">Potvrdit účast na akci</button>
+      </ngb-alert>
+      <ngb-alert type="success" *ngIf="savedNotice">
+        <strong>
+          Vaše změny byly úspěšně uloženy.
+        </strong>
+      </ngb-alert>
+      <ngb-alert type="warning" [dismissible]="false">
+        <strong>
+          Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.
+        </strong>
+      </ngb-alert>
+      <h1>Profil uživatele</h1>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field>
+            <input matInput type="text" id="name" class="input" placeholder="Nick nebo jméno*" formControlName="name">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field>
+            <input matInput type="text" id="email" class="input" placeholder="email" formControlName="email">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          Stravování:
+        </div>
+        <div class="col-md-6">
+          <mat-checkbox
+            *ngIf="user.willAttend && !registrationClosed"
+            name="lunch"
+            formControlName="lunch"></mat-checkbox>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          Jsem student Gymnázia Zábřeh:
+        </div>
+        <div class="col-md-6">
+          <mat-checkbox *ngIf="user.willAttend" name="gyza" formControlName="gyza"></mat-checkbox>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <button mat-raised-button *ngIf="user.willAttend" (click)="save()">Uložit změny</button>
+        <button mat-raised-button *ngIf="user.willAttend" (click)="cancelRegistration()">Zruš registraci
+        </button>
+        <button mat-raised-button *ngIf="!user.willAttend" (click)="save()">Potvrdit účast</button>
+        <div *ngIf="!user.willAttend">* Pro změnu údajů je potřeba potvrdit účast na akci</div>
+      </div>
+    </form>
+  </div>
+  <div class="ownTalks">
+    <h1>Moje přednášky</h1>
+    <div class="row">
+      <h2>Registrované přednášky</h2>
+      <app-talk-preview
+        *ngFor="let talk of myOrderedTalks"
+        [talk]="talk"
+        [user]="user"
+      ></app-talk-preview>
+    </div>
+  </div>
+</div>

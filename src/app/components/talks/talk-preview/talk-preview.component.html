@@ -1,0 +1,31 @@
+<div class="talk" [style.borderColor]="talk.line.color" (click)="openTalkDialog(talk)">
+  <div class="label" [style.backgroundColor]="talk.line.color">
+    {{talk.votesCount}} hlasů
+  </div>
+  <div class="talkHeader">
+    <span class="bold">{{talk.name.substr(0, 80)}}<span *ngIf="talk.name.length > 80">...</span></span>
+  </div>
+  <div class="talkContent">
+    {{talk?.description?.substr(0, 160)}}<span *ngIf="talk?.description?.length > 160">...</span>
+  </div>
+  <div class="talkTopicLine">
+    <span *ngIf="talk.line" [ngStyle]="{color: talk.line.color}">
+      {{talk.line.name}}
+    </span>
+  </div>
+  <div class="talkFooter" [style.backgroundColor]="talk.line.color">
+    <span>{{talk.userName}}</span>
+    <div *ngIf="showVoteButton">
+      <div class="vote" (click)="$event.preventDefault();$event.stopPropagation()">
+        <a *ngIf="!talk.hasVoted" aria-label="Hlasovat pro tuto přednášku" title="Hlasovat pro tuto přednášku"
+           (click)="upVote()">
+          <mat-icon aria-hidden="true" class="up">add_circle</mat-icon>
+        </a>
+        <a *ngIf="talk.hasVoted" aria-label="Zrušit hlas pro tuto přednášku" title="Zrušit hlas pro tuto přednášku"
+           (click)="downvote()">
+          <mat-icon aria-hidden="true" class="down">remove_circle</mat-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

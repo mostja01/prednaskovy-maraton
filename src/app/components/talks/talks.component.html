@@ -1,0 +1,43 @@
+<div class="talks">
+  <div [class.hide]="!(talks | async)">
+    <div class="row welcome">
+      <h1>Přednášky</h1>
+      <div
+        *ngIf="user !== null"
+        class="text-justify">
+        Cílem přednáškového maratonu je vzájemná výměna znalostí. Každý zde může mít svoji přednášku, stejně tak lze
+        navštívit přednášky ostatních lektorů.
+        Většina přednášek spadá dle tématu do své linie. Linie má svého vedoucího a většinou vyčleněnou místnost.
+        Máte-li chuť založit a organizovat svoji linii, kontaktujte organizátory.
+        Každé přednášce můžete dát svůj preferenční bod. Nejvíce žádnané přednášky proběhnou v atraktivním čase. Nejméně
+        žádané přednášky mohou být z kapacitních důvodů vyřazeny.
+      </div>
+      <div
+        *ngIf="user === null"
+        class="text-justify">
+        Cílem přednáškového maratonu je nabídnout čas a místo pro kultivaci myšlení a poznání. Snažíme se připravit
+        atraktivní přednášky z aktuálního dění kolem nás. Rádi vidíme, když se ve vzdělávání prolínají různé věkové kategorie
+        a dochází tak k oslabování informačních bublin kolem nás.
+      </div>
+      <br>
+    </div>
+    <div *ngIf="user !== null" class="row">
+      <!--<ngb-alert type="warning" [dismissible]="false">-->
+        <!--<strong>-->
+          <!--Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.-->
+        <!--</strong>-->
+      <!--</ngb-alert>-->
+      <button mat-raised-button (click)="openAddTalkDialog()" >Přidat přednášku</button>
+    </div>
+    <div class="row talkList">
+      <h2 *ngIf="newAddedTalks.length > 0">Nedávno přidané</h2>
+      <app-talk-preview *ngFor="let talk of newAddedTalks" [talk]="talk" [user]="user"></app-talk-preview>
+      <h2>Registrované přednášky</h2>
+      <app-talk-preview
+        *ngFor="let talk of orderedTalks" [talk]="talk" [user]="user"></app-talk-preview>
+    </div>
+  </div>
+  <div *ngIf="!(talks | async)">
+    Načítám
+  </div>
+</div>
