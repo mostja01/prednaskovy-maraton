@@ -1,0 +1,30 @@
+<div>
+  <div class="header">
+    <h2>{{talk.name}}</h2>
+  </div>
+  <div class="labels">
+    <div class="labelBlock">
+      <mat-icon>schedule</mat-icon>
+      <span>{{talk.duration}}</span>
+    </div>
+    <div class="labelBlock long" [ngStyle]="{color: talk.line.color}">
+      <mat-icon>linear_scale</mat-icon>
+      <span>{{talk.line.name}}</span>
+    </div>
+  </div>
+  <mat-dialog-content>
+    {{talk.description}}
+    <hr>
+    <h4>Lektor</h4>
+    <span class="bold shift">{{talk.userName}}</span>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="close" mat-raised-button mat-dialog-close>Zavřít</button>
+    <button *ngIf="(authService.userData | async) && (authService.userData | async).id === talk.userId" class="close"
+            mat-raised-button (click)="edit()">Upravit
+    </button>
+    <button *ngIf="(authService.userData | async) && (authService.userData | async).id === talk.userId" class="close"
+            mat-raised-button (click)="remove()">Odstranit
+    </button>
+  </mat-dialog-actions>
+</div>

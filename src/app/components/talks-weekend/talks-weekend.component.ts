@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {AppUser} from '../../model/appUser';
 import {MatDialog} from '@angular/material';
+import {TalksPresenter} from '../../shared/classes/talks-presenter';
+import {AppUser} from '../../model/appUser';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthService} from '../../services/auth.service';
 import {TopicLinesService} from '../../services/topic-lines.service';
-import {TalksPresenter} from '../../shared/classes/talks-presenter';
-import {AddTalkComponent} from './add-talk/add-talk.component';
 import {Talk} from '../../model/talk';
+import {AddTalkComponent} from './add-talk/add-talk.component';
 
 @Component({
   selector: 'app-talks',
-  templateUrl: './talks.component.html',
-  styleUrls: ['./talks.component.css']
+  templateUrl: './talks-weekend.component.html',
+  styleUrls: ['./talks-weekend.component.css']
 })
-export class TalksComponent extends TalksPresenter implements OnInit {
+export class TalksWeekendComponent extends TalksPresenter implements OnInit {
   public user: AppUser = null;
 
   constructor(

@@ -15,11 +15,3 @@ app-talk-preview {
   position: relative;
   display: inline-block;
 }
-.time {
-  width: 130px;
-  display: inline-block;
-}
-
-.title {
-  width: 800px;
-}
