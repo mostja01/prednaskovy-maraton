@@ -1,9 +1,9 @@
 import {Component, Inject} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
-import { AddTalkComponent } from '../add-talk/add-talk.component';
-import {AppUser} from '../../../model/appUser';
-import {Talk} from '../../../model/talk';
-import {AuthService} from '../../../services/auth.service';
+import { AddTalkComponent } from '../talks-weekend/add-talk/add-talk.component';
+import {AppUser} from '../../model/appUser';
+import {Talk} from '../../model/talk';
+import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 @Component({

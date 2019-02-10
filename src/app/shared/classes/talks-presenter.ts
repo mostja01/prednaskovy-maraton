@@ -60,6 +60,7 @@ export class TalksPresenter {
               return !this.user || voterId === this.user.id;
             }) >= 0;
             talkWithUser.votesCount = talkWithUser.voters.length;
+            console.log(talkWithUser);
             return talkWithUser;
           }),
           take(1)

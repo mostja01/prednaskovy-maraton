@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {TalkDetailComponent} from '../talk-detail/talk-detail.component';
 import {MatDialog} from '@angular/material';
-import {Talk} from '../../../model/talk';
+import {Talk} from '../../model/talk';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {AppUser} from '../../../model/appUser';
+import {AppUser} from '../../model/appUser';
 
 @Component({
   selector: 'app-talk-preview',
@@ -15,6 +15,8 @@ export class TalkPreviewComponent {
   public talk: Talk;
   @Input()
   public user: AppUser;
+  @Input()
+  public showVotes: boolean = true;
 
   private isVoteInProgress = false;
 

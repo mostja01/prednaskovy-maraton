@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TalksComponent} from './talks.component';
-import {TalkDetailComponent} from './talk-detail/talk-detail.component';
+import {TalksWeekendComponent} from './talks-weekend.component';
+import {TalkDetailComponent} from '../talk-detail/talk-detail.component';
 import {AddTalkComponent} from './add-talk/add-talk.component';
 import {SharedComponentsModule} from '../../shared/shared.module';
-import {TalksRoutingModule} from './talks-routing.module';
-import {TalkPreviewComponent} from './talk-preview/talk-preview.component';
+import {TalksRoutingModule} from './talks-weekend-routing.module';
+import {TalkPreviewComponent} from '../talk-preview/talk-preview.component';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import {TalkPreviewComponent} from './talk-preview/talk-preview.component';
   ],
   declarations: [
     TalkPreviewComponent,
-    TalksComponent,
+    TalksWeekendComponent,
     TalkDetailComponent,
     AddTalkComponent
   ],
@@ -23,11 +23,11 @@ import {TalkPreviewComponent} from './talk-preview/talk-preview.component';
     TalkDetailComponent,
     AddTalkComponent],
   exports: [
-    TalksComponent,
+    TalksWeekendComponent,
     TalkDetailComponent,
     AddTalkComponent,
     TalkPreviewComponent,
   ]
 })
-export class TalksModule {
+export class TalksWeekendModule {
 }

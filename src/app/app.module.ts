@@ -20,8 +20,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
-import {TalksModule} from './components/talks/talks.module';
+import {TalksWeekendModule} from './components/talks-weekend/talks-weekend.module';
 import {ProfileModule} from './components/profile/profile.module';
+import {TalksComponent} from './components/talks/talks.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ProfileModule} from './components/profile/profile.module';
     SignUpComponent,
     SignInComponent,
     NavComponent,
+    TalksComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import {ProfileModule} from './components/profile/profile.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    TalksModule,
+    TalksWeekendModule,
     ProfileModule,
   ],
   providers: [
