@@ -1,3 +1,20 @@
+.welcome {
+  margin: 2px 10px;
+}
+
+.talkList h2 {
+  margin: 25px 10px 15px 10px;
+}
+
+.talkList {
+  display: block;
+}
+
+app-talk-preview {
+  margin: 20px 10px;
+  position: relative;
+  display: inline-block;
+}
 .time {
   width: 130px;
   display: inline-block;
