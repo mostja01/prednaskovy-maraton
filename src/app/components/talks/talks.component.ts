@@ -92,7 +92,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     {
       ...this.universalTalk,
       ...this.otherLine,
-      description: 'Povídání o Zábřežsku',
+      description: 'Tajemné stezky, putování Zábřežskem po stezkách legend a příběhů.',
       duration: '0:80',
       name: 'Putování Zábřežskem',
       userName: 'Miroslav Kobza',
@@ -108,7 +108,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     {
       ...this.universalTalk,
       ...this.churchLine,
-      description: '',
+      description: 'Jak funguje církevní vzdělávání a jaká má specifika.',
       duration: '0:20',
       name: 'Církevní vzdělávací systém',
       userName: 'Jiří Koníček',
@@ -116,7 +116,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     {
       ...this.universalTalk,
       ...this.programmingLine,
-      description: 'Co umi umela inteligence? Co je machine learning? Druhy machine learning. Imezenia umele inteligence.',
+      description: 'Co umí umělá inteligence? Co je machine learning? Druhy machine learning. Omezení umělé inteligence.',
       duration: '0:50',
       name: 'Umělá inteligence, co umí a dokáže',
       userName: 'Marian Beiedom',
