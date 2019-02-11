@@ -68,7 +68,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     {
       ...this.universalTalk,
       ...this.policyLine,
-      description: 'Co to vlastně Brexit znamená',
+      description: 'Dozvíte se co vlastně Brexit znamená, jak to může dopadnout a jaké bude mít Brexit následky. Povíme si také něco o tom, co Brexitu předcházelo a jaká je pozice Velké Británie v EU.',
       duration: '0:50',
       name: 'Brexit',
       userName: 'Hana Brabcová',
