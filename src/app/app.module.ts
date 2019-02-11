@@ -12,7 +12,6 @@ import {HomeComponent} from './components/home/home.component';
 import {WarmUpComponent} from './components/warm-up/warm-up.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {PartnersComponent} from './components/partners/partners.component';
-import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {SignInComponent} from './components/sign-in/sign-in.component';
 import {NavComponent} from './components/nav/nav.component';
 import {SharedComponentsModule} from './shared/shared.module';
@@ -23,6 +22,8 @@ import { AngularFirestoreModule} from '@angular/fire/firestore';
 import {TalksWeekendModule} from './components/talks-weekend/talks-weekend.module';
 import {ProfileModule} from './components/profile/profile.module';
 import {TalksComponent} from './components/talks/talks.component';
+import {SignUpModule} from './components/sign-up/sign-up.module';
+import {TalksModule} from './components/talks/talks.module';
 
 @NgModule({
   declarations: [
@@ -31,10 +32,8 @@ import {TalksComponent} from './components/talks/talks.component';
     WarmUpComponent,
     ContactComponent,
     PartnersComponent,
-    SignUpComponent,
     SignInComponent,
     NavComponent,
-    TalksComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +57,8 @@ import {TalksComponent} from './components/talks/talks.component';
     NoopAnimationsModule,
     TalksWeekendModule,
     ProfileModule,
+    SignUpModule,
+    TalksModule
   ],
   providers: [
     AuthService

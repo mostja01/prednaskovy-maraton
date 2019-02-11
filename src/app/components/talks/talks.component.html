@@ -41,7 +41,7 @@
     </div>
     <br />
     <div class="row talkList">
-      <app-talk-preview *ngFor="let talk of talksView" [talk]="talk" [showVotes]="false"></app-talk-preview>
+      <app-talk-preview *ngFor="let talk of talksView" [talk]="talk"></app-talk-preview>
     </div>
   </div>
   <div *ngIf="!(talks | async)">
