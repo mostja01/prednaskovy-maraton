@@ -19,11 +19,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
-import {TalksWeekendModule} from './components/talks-weekend/talks-weekend.module';
 import {ProfileModule} from './components/profile/profile.module';
-import {TalksComponent} from './components/talks/talks.component';
 import {SignUpModule} from './components/sign-up/sign-up.module';
-import {TalksModule} from './components/talks/talks.module';
+import {TalksComponent} from './components/talks/talks.component';
+import {TalksModule} from './shared/talks.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +33,7 @@ import {TalksModule} from './components/talks/talks.module';
     PartnersComponent,
     SignInComponent,
     NavComponent,
+    TalksComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,6 @@ import {TalksModule} from './components/talks/talks.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    TalksWeekendModule,
     ProfileModule,
     SignUpModule,
     TalksModule
