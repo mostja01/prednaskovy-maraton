@@ -16,7 +16,7 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
   public profileForm;
   public user: AppUser = null;
   public savedNotice: boolean = false;
-  public registrationClosed = true;
+  public registrationClosed = false;
 
   constructor(private auth: AuthService,
               public afs: AngularFirestore,
@@ -58,8 +58,11 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
       name: new FormControl(this.user.name, [
         Validators.required,
         Validators.minLength(1)]),
-      lunch: [this.user.lunch],
-      gyza: [this.user.gyza],
+      pavecere: [this.user.pavecere],
+      sosnidane: [this.user.sosnidane],
+      sobed: [this.user.sobed],
+      sovecere: [this.user.sovecere],
+      student: [this.user.student],
       email: new FormControl({value: this.user.email, disabled: true}, Validators.required),
     });
   }
@@ -79,8 +82,11 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
 
   public patchUser() {
     this.user.name = this.profileForm.get('name').value;
-    this.user.lunch = this.profileForm.get('lunch').value;
-    this.user.gyza = this.profileForm.get('gyza').value;
+    this.user.pavecere = this.profileForm.get('pavecere').value;
+    this.user.sosnidane = this.profileForm.get('sosnidane').value;
+    this.user.sobed = this.profileForm.get('sobed').value;
+    this.user.sovecere = this.profileForm.get('sovecere').value;
+    this.user.student = this.profileForm.get('student').value;
     this.user.patch().then((_) => {
       this.savedNotice = true;
       window.setTimeout(() => {

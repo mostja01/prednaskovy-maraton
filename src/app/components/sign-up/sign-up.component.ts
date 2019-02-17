@@ -60,8 +60,6 @@ export class SignUpComponent implements OnInit {
       ]
       ],
       'name': [''],
-      'lunch': [false],
-      'gyza': [false],
     });
 
     this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
@@ -85,8 +83,6 @@ export class SignUpComponent implements OnInit {
         return;
       }
       user = userData;
-      user.lunch = this.userForm.get('lunch').value;
-      user.gyza = this.userForm.get('gyza').value;
       user.patch().then((_) => {
         this.afterSignIn();
       });

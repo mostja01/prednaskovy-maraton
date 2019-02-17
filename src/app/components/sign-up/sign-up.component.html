@@ -36,14 +36,6 @@
     </div>
 
     <div class="row">
-      <mat-checkbox [formControlName]="'lunch'">Mám zájem o jídlo na akci (zájemci o stravu budou mít vyšší vstupné)
-      </mat-checkbox>
-    </div>
-    <div class="row">
-      <mat-checkbox [formControlName]="'gyza'">Jsem student Gymnázia Zábřeh</mat-checkbox>
-    </div>
-
-    <div class="row">
       <button mat-raised-button type="submit" class="button" (click)="signUpWithEmail()"
               [disabled]="!userForm.valid">Registrovat se na akci
       </button>

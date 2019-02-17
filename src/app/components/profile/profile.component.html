@@ -16,9 +16,9 @@
         </strong>
       </ngb-alert>
       <!--<ngb-alert type="warning" [dismissible]="false">-->
-        <!--<strong>-->
-          <!--Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.-->
-        <!--</strong>-->
+      <!--<strong>-->
+      <!--Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.-->
+      <!--</strong>-->
       <!--</ngb-alert>-->
       <h1>Profil uživatele</h1>
       <div class="row">
@@ -35,24 +35,62 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          Stravování:
+      <div
+        *ngIf="user.willAttend && !registrationClosed"
+      >
+        <div class="row">
+          <div class="col-md-12">
+            Stravování:
+          </div>
         </div>
-        <div class="col-md-6">
-          <mat-checkbox
-            *ngIf="user.willAttend && !registrationClosed"
-            name="lunch"
-            formControlName="lunch"></mat-checkbox>
+        <div class="row">
+          <div class="col-md-10">
+            Pátek večeře - párky + pečivo 30 Kč:
+          </div>
+          <div class="col-md-2">
+            <mat-checkbox
+              name="pavecere"
+              formControlName="pavecere"></mat-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            Sobota snídaně - kakaová buchta s jablkem 20 Kč:
+          </div>
+          <div class="col-md-2">
+            <mat-checkbox
+              name="sosnidane"
+              formControlName="sosnidane"></mat-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            Sobotní oběd - bramborový guláš 40 Kč:
+          </div>
+          <div class="col-md-2">
+            <mat-checkbox
+              name="sobed"
+              formControlName="sobed"></mat-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            Sobotní večeře - pečená kuřecí křídla 35 Kč:
+          </div>
+          <div class="col-md-2">
+            <mat-checkbox
+              name="sovecere"
+              formControlName="sovecere"></mat-checkbox>
+          </div>
         </div>
       </div>
       <br>
-      <div class="row">
-        <div class="col-md-6">
-          Jsem student Gymnázia Zábřeh:
+      <div *ngIf="user.willAttend" class="row">
+        <div class="col-md-10">
+          Jsem student střední/vysoké školy:
         </div>
-        <div class="col-md-6">
-          <mat-checkbox *ngIf="user.willAttend" name="gyza" formControlName="gyza"></mat-checkbox>
+        <div class="col-md-2">
+          <mat-checkbox name="student" formControlName="student"></mat-checkbox>
         </div>
       </div>
       <br>

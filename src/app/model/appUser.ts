@@ -4,8 +4,11 @@ export class AppUser {
   public id: string = null;
   public email: string = null;
   public name: string = null;
-  public lunch: boolean = null;
-  public gyza: boolean = null;
+  public pavecere: boolean = null;
+  public sosnidane: boolean = null;
+  public sobed: boolean = null;
+  public sovecere: boolean = null;
+  public student: boolean = null;
   public willAttend: boolean = false;
 
   constructor(data: any, public fireStoreUser: AngularFirestoreDocument<AppUser>) {
@@ -29,8 +32,11 @@ export class AppUser {
     return {
       email: this.email,
       name: this.name,
-      lunch: this.lunch,
-      gyza: this.gyza,
+      pavecere: this.pavecere,
+      sosnidane: this.sosnidane,
+      sobed: this.sobed,
+      sovecere: this.sovecere,
+      student: this.student,
       willAttend: this.willAttend
     };
   }
