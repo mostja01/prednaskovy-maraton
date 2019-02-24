@@ -93,6 +93,13 @@
           <mat-checkbox name="student" formControlName="student"></mat-checkbox>
         </div>
       </div>
+      <div
+        *ngIf="!(hasAllObligatoryFields() && !user.willAttend)"
+        class="row">
+        <div class="col">
+         <p>Částku 100Kč z účast + poplatky za objednaná jídla zašlete na účet 2900784428/2010. Do poznámky zadejte svůj email.</p>
+        </div>
+      </div>
       <br>
       <div class="row">
         <button mat-raised-button *ngIf="user.willAttend" (click)="save()">Uložit změny</button>
