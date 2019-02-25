@@ -37,7 +37,8 @@ export class SignInComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<SignInComponent>,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              ) {
   }
 
   public ngOnInit() {
@@ -49,6 +50,7 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.authService.emailLogin(this.signInForm.value['email'], this.signInForm.value['password']).then(success => {
       if (this.authService.authState) {
         this.closeDialog();
+        this.router.navigate(['/profile']);
       } else {
         this.isInvalidCredentials = true;
       }
