@@ -8,7 +8,7 @@
       <br>
     </div>
     <div>
-      <h5>Program</h5>
+      <h5>Hlavní program</h5>
     </div>
     <div>
       <div>
@@ -34,12 +34,30 @@
       </div>
     </div>
     <br />
-    <p>(Anotace a přednášky vedlejší linie budeme doplňovat v průběhu tohoto týdne.)</p>
+    <br />
+    <div>
+      <h5>Vedlejší program</h5>
+      <div>
+        <span class="time">&nbsp;&nbsp;9:00 - 10:00</span><span class="title">Role programování v současné společnosti</span>
+      </div>
+      <div>
+        <span class="time">10:00 - 11:00</span><span class="title">Selhání kritického smýšlení v době sociálních sítí</span>
+      </div>
+      <div>
+        <span class="time">13:30 - 14:30</span><span class="title">Historie Caterpillaru</span>
+      </div>
+      <div>
+        <span class="time">16:00 - 16:30</span><span class="title">GDPR</span>
+      </div>
+      <div>
+        <span class="time">16:30 - 17:00</span><span class="title">Církevní vzdělávací systém pokračování</span>
+      </div>
+    </div>
+    <br />
     <br />
     <div>
       <h5>Detaily přednášek</h5>
     </div>
-    <br />
     <div class="row talkList">
       <app-talk-preview *ngFor="let talk of manualTalks" [talk]="talk" [showVotes]="false"></app-talk-preview>
     </div>
