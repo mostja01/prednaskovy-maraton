@@ -32,7 +32,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     lineName: 'Programování, IT, technika',
   };
   policyLine = {
-    line: {color: '#e65252', name: 'Politika a sociologie', id: 'TG3Qyi9dZGROcygoOYDb'},
+    line: {color: 'green', name: 'Politika a sociologie', id: 'TG3Qyi9dZGROcygoOYDb'},
     lineName: 'Politika a sociologie',
   };
   otherLine = {
@@ -84,7 +84,7 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     {
       ...this.universalTalk,
       ...this.scienceLine,
-      description: 'Popis procesů a efektů v organismu',
+      description: 'Popis procesů a efektů alkoholu v organizmu, aneb co se s Vámi děje, když si dáte panáka.',
       duration: '0:50',
       name: 'Metabolismus alkoholu',
       userName: 'Petr Hošek',
@@ -128,6 +128,22 @@ export class TalksComponent extends TalksPresenter implements OnInit {
       duration: '0:20',
       name: 'Role programování v současné a budoucí společnosti',
       userName: 'Zdeněk Mlčoch',
+    },
+    {
+      ...this.universalTalk,
+      ...this.scienceLine,
+      description: 'Máte pocit že se v dnešní hyperracionální době rozmáhá iracionalita? A je to vážně jen pocit? A co to vlastně znamená být racionální? Pokusme se tyto otázky zodpovědět.',
+      duration: '0:50',
+      name: 'Selhání kritického smýšlení v době sociálních sítí',
+      userName: 'Lubomír Grund',
+    },
+    {
+      ...this.universalTalk,
+      ...this.policyLine,
+      description: 'Lehké intro do toho co to vlastně je GDPR, k čemu slouží a jak jej naplnit z pohledu neziskové organizace a organizátora akcí.',
+      duration: '0:20',
+      name: 'GPDR ve zkratce',
+      userName: 'Jan Mlčoch',
     },
   ];
 
