@@ -1,6 +1,6 @@
 <div class="talk" [style.borderColor]="talk.line.color" (click)="openTalkDialog(talk)">
   <div class="label" [style.backgroundColor]="talk.line.color" *ngIf="showVotes">
-    {{talk.votesCount}} hlasů
+    {{talk.votesCount}}&nbsp;hlasů
   </div>
   <div class="talkHeader">
     <span class="bold">{{talk.name.substr(0, 80)}}<span *ngIf="talk.name.length > 80">...</span></span>
