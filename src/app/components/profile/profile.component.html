@@ -38,6 +38,13 @@
       <div
         *ngIf="user.willAttend && !registrationClosed"
       >
+
+        <div class="row">
+          <div class="col-md-12">
+            Objednávka stravování je ukončena.
+          </div>
+        </div>
+        <!--
         <div class="row">
           <div class="col-md-12">
             Stravování:
@@ -82,7 +89,7 @@
               name="sovecere"
               formControlName="sovecere"></mat-checkbox>
           </div>
-        </div>
+        </div>-->
       </div>
       <br>
       <div *ngIf="user.willAttend" class="row">
