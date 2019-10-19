@@ -39,7 +39,9 @@ export class TalksWeekendComponent extends TalksPresenter implements OnInit {
   }
 
   public get orderedTalks() {
-    return this.talksView.sort((a, b) => {
+    return this.talksView.filter((talk: Talk)=>{
+      return !talk.inMainLine;
+    }).sort((a, b) => {
       if (b.voters.length === a.voters.length) {
         if (b.name > a.name) {
           return -1;

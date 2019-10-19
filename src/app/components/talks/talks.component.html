@@ -3,63 +3,15 @@
     <div>
       <h1>Přednášky</h1>
       <div>
-        Přednáškový maraton je komunitní akce, na které přednášejí odborníci i laici pro veřejnost. Téma přednášek není nijak omezeno a i proto je to jedinečná akce v regionu i v celé republice. Akce proběhne v sobotu 9. 3. v budově zábřežského gymnázia. Nebojte se přijít klidně i na jedinou přednášku, vstup není nijak omezen.
+        Přednáškový maraton je komunitní akce, na které přednášejí odborníci i laici pro veřejnost. Téma přednášek není nijak omezeno a i proto je to jedinečná akce v regionu i v celé republice. Akce proběhne v sobotu 11.1. v budově zábřežského gymnázia. Nebojte se přijít klidně i na jedinou přednášku, <strong> vstup není nijak omezen.</strong>
       </div>
       <br>
     </div>
     <div>
-      <h5>Hlavní program</h5>
-    </div>
-    <div>
-      <div>
-        <span class="time">&nbsp;&nbsp;9:00 - 10:00</span><span class="title">Brexit</span>
-      </div>
-      <div>
-        <span class="time">10:00 - 11:00</span><span class="title">Proč si vláda nemůže dovolit bohaté důchodce?</span>
-      </div>
-      <div>
-        <span class="time">11:00 - 12:00</span><span class="title">Metabolismus alkoholu</span>
-      </div>
-      <div>
-        <span class="time">13:30 - 15:00</span><span class="title">Putování Zábřežskem</span>
-      </div>
-      <div>
-        <span class="time">15:00 - 16:00</span><span class="title">Výživou ke zdraví</span>
-      </div>
-      <div>
-        <span class="time">16:00 - 16:30</span><span class="title">Církevní vzdělávací systém</span>
-      </div>
-      <div>
-        <span class="time">16:30 - 17:30</span><span class="title">Umělá inteligence</span>
-      </div>
-    </div>
-    <br />
-    <br />
-    <div>
-      <h5>Vedlejší program</h5>
-      <div>
-        <span class="time">&nbsp;&nbsp;9:00 - 10:00</span><span class="title">Role programování v současné společnosti</span>
-      </div>
-      <div>
-        <span class="time">10:00 - 11:00</span><span class="title">Selhání kritického smýšlení v době sociálních sítí</span>
-      </div>
-      <div>
-        <span class="time">13:30 - 14:30</span><span class="title">Historie Caterpillaru</span>
-      </div>
-      <div>
-        <span class="time">16:00 - 16:30</span><span class="title">GDPR</span>
-      </div>
-      <div>
-        <span class="time">16:30 - 17:00</span><span class="title">Církevní vzdělávací systém pokračování</span>
-      </div>
-    </div>
-    <br />
-    <br />
-    <div>
-      <h5>Detaily přednášek</h5>
+      <h5>Detaily přednášek budou časem doplněny.</h5>
     </div>
     <div class="row talkList">
-      <app-talk-preview *ngFor="let talk of manualTalks" [talk]="talk" [showVotes]="false"></app-talk-preview>
+      <app-talk-preview *ngFor="let talk of orderedTalks" [talk]="talk" [showVotes]="false"></app-talk-preview>
     </div>
   </div>
   <div *ngIf="!(talks | async)">

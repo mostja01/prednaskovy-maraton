@@ -5,7 +5,7 @@ import {AppUser} from '../../model/appUser';
 import {Observable} from 'rxjs/internal/Observable';
 import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Talk, TopicLine} from '../../model/talk';
-import {map, take, zipAll} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
 import {ObservableInput} from 'rxjs/src/internal/types';
 import {AuthService} from '../../services/auth.service';
@@ -37,9 +37,7 @@ export class TalksPresenter {
     this.getTalks().subscribe((talks: Talk[]) => {
       this.talksView = [];
       talks.forEach((talkData: any) => {
-        if (this.user || talkData.mainSchedule) {
           this.talksView.push(talkData);
-        }
       });
       this.fillLinesData();
     });

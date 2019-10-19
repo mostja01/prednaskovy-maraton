@@ -2,6 +2,7 @@ import {AppUser} from './appUser';
 
 export interface Talk {
   line?: TopicLine;
+  inMainLine?: boolean;
   showVoteButton: boolean;
   talkId: string;
   talkRef: any;
