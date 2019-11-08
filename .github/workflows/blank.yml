@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - with:
+      with:
         node-version: '10.x'
     - name: Get npm i for dx-scanner
       run: npm i -g dx-scanner
