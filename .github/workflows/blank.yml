@@ -9,9 +9,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
+    - with:
+        node-version: '10.x'
+    - name: Get npm i for dx-scanner
+      run: npm i -g dx-scanner
+    - name: Run a dx-scanner
+      run: dx-scanner
+    - name: dx-scanner done
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        echo Finished,
