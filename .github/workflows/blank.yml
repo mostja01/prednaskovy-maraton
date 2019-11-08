@@ -12,7 +12,7 @@ jobs:
       with:
         node-version: '10.x'
     - name: Get npm i for dx-scanner
-      run: npm i -g dx-scanner
+      run: sudo npm i -g dx-scanner
     - name: Run a dx-scanner
       run: dx-scanner
     - name: dx-scanner done
