@@ -9,9 +9,3 @@ h1 {
 .ownTalks {
   margin-top: 70px;
 }
-
-app-talk-preview {
-  margin: 20px 10px;
-  position: relative;
-  display: inline-block;
-}

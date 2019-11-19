@@ -79,9 +79,38 @@ export class TalksComponent extends TalksPresenter implements OnInit {
     });
   }
 
-  public get orderedTalks() {
+  public get orderedTalksMain() {
     return this.talksView.filter((talk: Talk)=>{
       return talk.inMainLine;
+    }).sort((a, b) => {
+      if (b.voters.length === a.voters.length) {
+        if (b.name > a.name) {
+          return -1;
+        } else {
+          return 1;
+        }
+      }
+      return b.voters.length - a.voters.length;
+    });
+  }
+
+  public get newAddedTalks() {
+    const newAdded = this.talksView.filter((talk: Talk) => {
+      // Return true if was created in last 7 days
+      return (Date.now() - talk.created.getTime()) < 5 * 24 * 60 * 60 * 1000;
+    });
+    return newAdded.sort((a, b) => {
+      if (b.created > a.created) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  }
+
+  public get orderedTalksOthers() {
+    return this.talksView.filter((talk: Talk)=>{
+      return !talk.inMainLine;
     }).sort((a, b) => {
       if (b.voters.length === a.voters.length) {
         if (b.name > a.name) {

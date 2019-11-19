@@ -3,15 +3,20 @@
     <div>
       <h1>Přednášky</h1>
       <div>
-        Přednáškový maraton je komunitní akce, na které přednášejí odborníci i laici pro veřejnost. Téma přednášek není nijak omezeno a i proto je to jedinečná akce v regionu i v celé republice. Akce proběhne v sobotu 11.1. v budově zábřežského gymnázia. Nebojte se přijít klidně i na jedinou přednášku, <strong> vstup není nijak omezen.</strong>
+        Cílem přednáškového maratonu je vzájemná výměna znalostí. Každý zde může mít svoji přednášku, stejně tak lze navštívit přednášky ostatních lektorů. Většina přednášek spadá dle tématu do své linie. Linie má svého vedoucího a většinou vyčleněnou místnost. Máte-li chuť založit a organizovat svoji linii, kontaktujte organizátory. Každé přednášce můžete dát svůj preferenční bod. Nejvíce žádané přednášky proběhnou v atraktivním čase. Nejméně žádané přednášky mohou být z kapacitních důvodů vyřazeny.
       </div>
       <br>
     </div>
-    <div>
-      <h5>Detaily přednášek budou časem doplněny.</h5>
-    </div>
-    <div class="row talkList">
-      <app-talk-preview *ngFor="let talk of orderedTalks" [talk]="talk" [showVotes]="false"></app-talk-preview>
+    <div class="talkList">
+      <h5 *ngIf="orderedTalksMain.length > 0">Promované přednášky</h5>
+      <app-talk-preview *ngFor="let talk of orderedTalksMain" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
+
+      <p>Dále bude probíhat spousta vedlejších přednášek již od pátečního večera do sobotních ranních hodin. Pokud máte přednášku, kterou byste zde realizovali, tak se nebojte ji přidat.</p>
+      <h5>Další přednášky</h5>
+      <app-talk-preview *ngFor="let talk of orderedTalksOthers" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
+
+      <h5 *ngIf="newAddedTalks.length > 0">Nedávno přidané</h5>
+      <app-talk-preview *ngFor="let talk of newAddedTalks" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
     </div>
   </div>
   <div *ngIf="!(talks | async)">

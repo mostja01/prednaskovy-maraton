@@ -23,6 +23,7 @@ import {ProfileModule} from './components/profile/profile.module';
 import {SignUpModule} from './components/sign-up/sign-up.module';
 import {TalksComponent} from './components/talks/talks.component';
 import {TalksModule} from './shared/talks.module';
+import {RulesComponent} from './components/rules/rules.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {TalksModule} from './shared/talks.module';
     SignInComponent,
     NavComponent,
     TalksComponent,
+    RulesComponent,
   ],
   imports: [
     BrowserModule,

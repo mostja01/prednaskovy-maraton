@@ -10,18 +10,10 @@
         <a class="nav-link" (click)="closeNavbar()" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">O akci</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="closeNavbar()" routerLink="/talks" routerLinkActive="active">Sobotní přednášky</a>
+        <a class="nav-link" (click)="closeNavbar()" routerLink="/talks" routerLinkActive="active">Přednášky</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="closeNavbar()" routerLink="/contact" routerLinkActive="active">Kontakt</a>
-      </li>
-      <li
-        *ngIf="!(authService.userData | async)"
-        class="nav-item">
-        <a class="nav-link" (click)="closeNavbar()" routerLink="/warm-up" routerLinkActive="active">Přespání</a>
-      </li>
-      <li class="nav-item" *ngIf="authService.userData | async">
-        <a class="nav-link" (click)="closeNavbar()" routerLink="/talks-weekend" routerLinkActive="active">Víkend</a>
       </li>
     </ul>
 
@@ -31,6 +23,11 @@
       </li>
       <li class="loggedUser">
         <a href="javascript:" (click)="closeNavbar(); logOut()">Odhlásit</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" *ngIf="!(authService.userData | async)">
+      <li class="nav-item">
+        <a class="btn btn-default btn-primary" routerLink="/sign-up">Registrace</a>&nbsp;
       </li>
     </ul>
   </div>

@@ -10,11 +10,6 @@
   display: block;
 }
 
-app-talk-preview {
-  margin: 20px 10px;
-  position: relative;
-  display: inline-block;
-}
 .time {
   width: 130px;
   display: inline-block;
