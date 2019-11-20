@@ -27,6 +27,7 @@ export class AuthService {
   public authState: any = null;
   public userData: BehaviorSubject<AppUser> = new BehaviorSubject<AppUser>(null);
   public userDataRef: AngularFirestoreDocument<any> = null;
+  public lastUsedName: string = null;
 
   constructor(private router: Router,
               public afAuth: AngularFireAuth,

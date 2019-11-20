@@ -94,6 +94,7 @@ export class SignUpComponent implements OnInit {
     if (!this.userForm) {
       return;
     }
+    this.auth.lastUsedName = this.userForm.get('name').value;
     const form = this.userForm;
     for (const field in this.formErrors) {
       if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {

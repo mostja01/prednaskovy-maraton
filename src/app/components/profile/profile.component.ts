@@ -55,7 +55,7 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
 
   public buildForm(): void {
     this.profileForm = this.fb.group({
-      name: new FormControl(this.user.name, [
+      name: new FormControl(this.user.name || this.auth.lastUsedName, [
         Validators.required,
         Validators.minLength(1)]),
       pavecere: [this.user.pavecere],

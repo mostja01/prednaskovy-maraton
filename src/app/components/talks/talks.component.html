@@ -8,7 +8,7 @@
       <br>
     </div>
     <div class="talkList">
-      <h5 *ngIf="orderedTalksMain.length > 0">Promované přednášky</h5>
+      <h5 *ngIf="orderedTalksMain.length > 0">Vybrané přednášky</h5>
       <app-talk-preview *ngFor="let talk of orderedTalksMain" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
 
       <p>Dále bude probíhat spousta vedlejších přednášek již od pátečního večera do sobotních ranních hodin. Pokud máte přednášku, kterou byste zde realizovali, tak se nebojte ji přidat.</p>
