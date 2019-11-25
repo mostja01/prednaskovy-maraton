@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatDialogRef} from '@angular/material';
 import {Router} from '@angular/router';
 
 @Component({
@@ -35,7 +34,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     }
   };
   constructor(private fb: FormBuilder,
-              private dialogRef: MatDialogRef<SignInComponent>,
               private router: Router,
               private authService: AuthService,
               ) {
@@ -49,7 +47,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     this.isInvalidCredentials = false;
     this.authService.emailLogin(this.signInForm.value['email'], this.signInForm.value['password']).then(success => {
       if (this.authService.authState) {
-        this.closeDialog();
         this.router.navigate(['/profile']);
       } else {
         this.isInvalidCredentials = true;
@@ -99,10 +96,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     }
   }
 
-  public closeDialog(): void {
-    this.dialogRef.close();
-  }
-
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -116,7 +109,6 @@ export class SignInComponent implements OnInit, OnDestroy {
     // Do after login stuff here, such router redirects, toast messages, etc.
     if (this.authService.authState) {
       this.router.navigate(['/']);
-      this.closeDialog();
     } else {
       this.isUnknownError = true;
     }

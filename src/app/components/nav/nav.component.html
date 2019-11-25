@@ -27,6 +27,9 @@
     </ul>
     <ul class="nav navbar-nav navbar-right" *ngIf="!(authService.userData | async)">
       <li class="nav-item">
+        <a class="btn btn-default btn-primary" routerLink="/sign-in">Přihlásit</a>&nbsp;
+      </li>
+      <li class="nav-item">
         <a class="btn btn-default btn-primary" routerLink="/sign-up">Registrace</a>&nbsp;
       </li>
     </ul>

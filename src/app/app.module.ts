@@ -45,7 +45,7 @@ import {RulesComponent} from './components/rules/rules.component';
     CommonModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    NgbModule.forRoot(),
+    NgbModule,
     SharedComponentsModule,
     NgbAlertModule,
     MatIconModule,
