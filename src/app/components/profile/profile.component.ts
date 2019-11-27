@@ -6,6 +6,8 @@ import {AuthService} from '../../services/auth.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {TopicLinesService} from '../../services/topic-lines.service';
 import {Talk} from '../../model/talk';
+import {AddTalkComponent} from '../talks-weekend/add-talk/add-talk.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +21,7 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
   public registrationClosed = false;
 
   constructor(private auth: AuthService,
+              private dialog: MatDialog,
               public afs: AngularFirestore,
               public topicLinesService: TopicLinesService,
               private fb: FormBuilder) {
@@ -92,6 +95,13 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
       window.setTimeout(() => {
         this.savedNotice = false;
       }, 2000);
+    });
+  }
+
+  public openAddTalkDialog(): void {
+    this.dialog.open(AddTalkComponent, {
+      width: '800px',
+      data: {user: this.user}
     });
   }
 }

@@ -125,6 +125,14 @@
     <div class="row">
       <h2>Registrované přednášky</h2>
     </div>
+    <div *ngIf="user !== null" class="row m-2 mb-3">
+      <!--<ngb-alert type="warning" [dismissible]="false">-->
+      <!--<strong>-->
+      <!--Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.-->
+      <!--</strong>-->
+      <!--</ngb-alert>-->
+      <button mat-raised-button (click)="openAddTalkDialog()">Přidat přednášku</button>
+    </div>
     <div class="row">
       <app-talk-preview
         *ngFor="let talk of myOrderedTalks"
