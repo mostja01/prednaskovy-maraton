@@ -6,6 +6,7 @@ import {AuthService} from '../../services/auth.service';
 import {TopicLinesService} from '../../services/topic-lines.service';
 import {TalksPresenter} from '../../shared/classes/talks-presenter';
 import {Talk} from '../../model/talk';
+import {AddTalkComponent} from '../talks-weekend/add-talk/add-talk.component';
 
 @Component({
   selector: 'app-talks',
@@ -120,6 +121,13 @@ export class TalksComponent extends TalksPresenter implements OnInit {
         }
       }
       return b.voters.length - a.voters.length;
+    });
+  }
+
+  public openAddTalkDialog(): void {
+    this.dialog.open(AddTalkComponent, {
+      width: '800px',
+      data: {user: this.user}
     });
   }
 }

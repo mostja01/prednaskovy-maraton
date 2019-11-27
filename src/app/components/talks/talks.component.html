@@ -7,6 +7,14 @@
       </div>
       <br>
     </div>
+    <div *ngIf="user !== null" class="row m-2 mb-3">
+      <!--<ngb-alert type="warning" [dismissible]="false">-->
+      <!--<strong>-->
+      <!--Registrace přednášek a stravy byla ukončena. V případě dotazů či žádosti o dodatečnou úpravu nás kontaktujte.-->
+      <!--</strong>-->
+      <!--</ngb-alert>-->
+      <button mat-raised-button (click)="openAddTalkDialog()">Přidat přednášku</button>
+    </div>
     <div class="talkList">
       <h5 *ngIf="orderedTalksMain.length > 0">Vybrané přednášky</h5>
       <app-talk-preview *ngFor="let talk of orderedTalksMain" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
