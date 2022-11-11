@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import {AuthService} from '../../services/auth.service';
 import {AppUser} from '../../model/appUser';
 import {SignInComponent} from '../sign-in/sign-in.component';
 import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nav',

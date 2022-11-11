@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "prednaskovy-maraton-new"
+  "defaultProject": "prednaskovy-maraton-new",
+  "cli": {
+    "analytics": "a4500701-bf7e-420a-b248-946d34490de0"
+  }
 }

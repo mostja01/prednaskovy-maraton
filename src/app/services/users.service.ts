@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AppUser} from '../model/appUser';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs/internal/Observable';
 import {map} from 'rxjs/operators';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class UsersService {
     return this.afs.collection<AppUser[]>('users')
       .doc<AppUser>(userId)
       .valueChanges()
-      .pipe(map((user) => {
+      .pipe(map((user: any) => {
         user.id = userId;
         return user;
       }));

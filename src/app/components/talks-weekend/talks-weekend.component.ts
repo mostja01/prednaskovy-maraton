@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material';
 import {TalksPresenter} from '../../shared/classes/talks-presenter';
 import {AppUser} from '../../model/appUser';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {AuthService} from '../../services/auth.service';
 import {TopicLinesService} from '../../services/topic-lines.service';
 import {Talk} from '../../model/talk';
 import {AddTalkComponent} from './add-talk/add-talk.component';
+import {MatDialog} from '@angular/material/dialog';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-talks',

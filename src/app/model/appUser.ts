@@ -1,4 +1,4 @@
-import {AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 
 export class AppUser {
   public id: string = null;

@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {auth, User} from 'firebase';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {take} from 'rxjs/operators';
 import {AppUser} from '../model/appUser';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app';
+import User = firebase.User;
+import auth = firebase.auth;
 
 
 // export function createListValueChanges<T>(query: DatabaseQuery) {
@@ -111,7 +113,7 @@ export class AuthService {
   }
 
   public emailSignUp(email: string, password: string, name: string) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((user: auth.UserCredential) => {
         this.authState = user;
         // user.updateProfile({
@@ -128,7 +130,7 @@ export class AuthService {
   //// Email/Password Auth ////
 
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
         this.updateUserData();
@@ -144,7 +146,7 @@ export class AuthService {
   }
 
   signOut(): void {
-    this.afAuth.auth.signOut().then((data) => {
+    this.afAuth.signOut().then((data) => {
       console.log('sign out', data);
       this.router.navigate(['/']);
       this.userData.next(null);
@@ -155,7 +157,7 @@ export class AuthService {
   //// Sign Out ////
 
   private socialSignIn(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
+    return this.afAuth.signInWithPopup(provider)
       .then((credential) => {
         this.authState = credential.user;
         this.updateUserData();

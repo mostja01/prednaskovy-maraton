@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {TalkDetailComponent} from '../talk-detail/talk-detail.component';
-import {MatDialog} from '@angular/material';
 import {Talk} from '../../model/talk';
-import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
 import {AppUser} from '../../model/appUser';
+import {MatDialog} from '@angular/material/dialog';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-talk-preview',

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SignInComponent} from '../sign-in/sign-in.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-warm-up',

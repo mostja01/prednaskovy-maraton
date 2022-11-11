@@ -3,11 +3,11 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {TalksPresenter} from '../../shared/classes/talks-presenter';
 import {AppUser} from '../../model/appUser';
 import {AuthService} from '../../services/auth.service';
-import {AngularFirestore} from '@angular/fire/firestore';
 import {TopicLinesService} from '../../services/topic-lines.service';
 import {Talk} from '../../model/talk';
 import {AddTalkComponent} from '../talks-weekend/add-talk/add-talk.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-profile',

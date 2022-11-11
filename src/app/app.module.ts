@@ -1,8 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule} from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AppComponent } from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 import {environment} from '../environments/environment';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -16,14 +14,21 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {NavComponent} from './components/nav/nav.component';
 import {SharedComponentsModule} from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
-import {MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import { AngularFirestoreModule} from '@angular/fire/firestore';
+import {FirestoreModule} from '@angular/fire/firestore';
 import {ProfileModule} from './components/profile/profile.module';
 import {SignUpModule} from './components/sign-up/sign-up.module';
 import {TalksComponent} from './components/talks/talks.component';
 import {TalksModule} from './shared/talks.module';
 import {RulesComponent} from './components/rules/rules.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import {AngularFireModule} from '@angular/fire/compat';
+import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,7 @@ import {RulesComponent} from './components/rules/rules.component';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    FirestoreModule,
     AngularFireAuthModule,
     CommonModule,
     ReactiveFormsModule,
@@ -66,4 +71,5 @@ import {RulesComponent} from './components/rules/rules.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

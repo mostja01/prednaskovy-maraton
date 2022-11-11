@@ -3,12 +3,12 @@ import {Utils} from '../../model/utils';
 import {TopicLinesService} from '../../services/topic-lines.service';
 import {AppUser} from '../../model/appUser';
 import {Observable} from 'rxjs/internal/Observable';
-import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/firestore';
 import {Talk, TopicLine} from '../../model/talk';
 import {map, take} from 'rxjs/operators';
 import {Subject} from 'rxjs/internal/Subject';
-import {ObservableInput} from 'rxjs/src/internal/types';
 import {AuthService} from '../../services/auth.service';
+import {AngularFirestore, AngularFirestoreCollection, DocumentChangeAction} from '@angular/fire/compat/firestore';
+import {ObservableInput} from 'rxjs';
 
 export class TalksPresenter {
   public talks: Observable<DocumentChangeAction<any>[]>;
