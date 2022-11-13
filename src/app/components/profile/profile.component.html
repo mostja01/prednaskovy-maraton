@@ -1,16 +1,11 @@
-<div class="profile" *ngIf="user">
+<div class="profile" *ngIf="user && profileForm">
   <div class="userContainer">
     <p *ngIf="!hasAllObligatoryFields()">
       Vyplňte prosím všechna povinná pole.
     </p>
 
     <form [formGroup]="profileForm">
-      <ngb-alert type="danger" *ngIf="hasAllObligatoryFields() && !user.willAttend">
-        <p>Nemáte ještě potvrzenou osobní účast na akci. Pomocí tlačítka níže potvrďte prosím Vaši účast.</p>
-        <br>
-        <button mat-raised-button (click)="save()">Potvrdit účast na akci</button>
-      </ngb-alert>
-      <ngb-alert type="success" *ngIf="savedNotice">
+      <ngb-alert style="position: sticky;top: 0" type="success" *ngIf="savedNotice">
         <strong>
           Vaše změny byly úspěšně uloženy.
         </strong>
@@ -46,7 +41,7 @@
         </div>
         <div class="row">
           <div class="col-md-10">
-            Pátek večeře - párky + pečivo 30 Kč:
+            Pátek večeře - párky + pečivo {{pricelist['pavecere']}} Kč:
           </div>
           <div class="col-md-2">
             <mat-checkbox
@@ -56,7 +51,7 @@
         </div>
         <div class="row">
           <div class="col-md-10">
-            Sobota snídaně - buchta s jablkem 20 Kč:
+            Sobota snídaně - buchta s jablkem {{pricelist['sosnidane']}} Kč:
           </div>
           <div class="col-md-2">
             <mat-checkbox
@@ -66,7 +61,7 @@
         </div>
         <div class="row">
           <div class="col-md-10">
-            Sobotní oběd - špagety 40 Kč:
+            Sobotní oběd - špagety {{pricelist['sobed']}} Kč:
           </div>
           <div class="col-md-2">
             <mat-checkbox
@@ -76,7 +71,7 @@
         </div>
         <div class="row">
           <div class="col-md-10">
-            Sobotní večeře - rizoto 35 Kč:
+            Sobotní večeře - rizoto {{pricelist['sovecere']}} Kč:
           </div>
           <div class="col-md-2">
             <mat-checkbox
@@ -86,7 +81,7 @@
         </div>
       </div>
       <br>
-      <div *ngIf="user.willAttend" class="row">
+      <div class="row">
         <div class="col-md-10">
           Jsem student střední/vysoké školy:
         </div>
@@ -94,24 +89,35 @@
           <mat-checkbox name="student" formControlName="student"></mat-checkbox>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-10">
+          Budu přespávat
+        </div>
+        <div class="col-md-2">
+          <mat-checkbox name="willSleep" formControlName="willSleep"></mat-checkbox>
+        </div>
+      </div>
       <div
-        *ngIf="!(hasAllObligatoryFields() && !user.willAttend)"
+        *ngIf="user.willSleep"
         class="row">
         <div class="col">
-          <p>&nbsp;</p>
-          <p><strong>Vstup na akci není nijak zpoplatněn, či omezen.
-            <br> Přespání (na sobotu i neděli dohromady) je zpoplatněno 100 Kč při platbě předem, 150 Kč při platbě na místě.
-          <br>Po potvrzení účasti ve svém profilu zašlete 100 Kč + další poplatky na účet 2900784428/2010. Do poznámky zadejte svůj email.</strong></p>
+          <p><strong>Poplatek za přespání je 200 Kč při platbě předem, 250 Kč při platbě na místě</strong></p>
+          <p><strong>Poplatek zašlete na účet 2900784428/2010. Do poznámky zadejte svůj email.</strong></p>
+        </div>
+      </div>
+      <div
+        *ngIf="user.email && getAmount()"
+        class="row">
+        <div class="col">
+          <p><strong>Cena {{getAmount()}}</strong></p>
+          <p>
+            <img
+              alt="qr platba"
+              src="https://api.paylibo.com/paylibo/generator/czech/image?accountNumber=2900784428&bankCode=2010&amount={{getAmount()}}.00&currency=CZK&vs=2023&message={{user.email}}&size=350">
+          </p>
         </div>
       </div>
       <br>
-      <div class="row">
-        <button mat-raised-button *ngIf="user.willAttend" (click)="save()">Uložit změny</button>
-        <button mat-raised-button *ngIf="user.willAttend" (click)="cancelRegistration()">Zruš registraci
-        </button>
-        <button mat-raised-button *ngIf="!user.willAttend" (click)="save()">Potvrdit účast</button>
-        <div *ngIf="!user.willAttend">* Pro změnu údajů je potřeba potvrdit účast na akci</div>
-      </div>
     </form>
   </div>
   <div class="ownTalks">

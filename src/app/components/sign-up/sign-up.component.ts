@@ -19,14 +19,18 @@ export class SignUpComponent implements OnInit {
   };
   public validationMessages = {
     'email': {
-      'required': 'Email is required.',
-      'email': 'Email must be a valid email'
+      'required': 'E-mail je povinný údaj',
+      'email': 'E-mailová adresa má neplatný formát'
     },
     'password': {
-      'required': 'Password is required.',
-      'pattern': 'Password must be include at one letter and one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
+      'required': 'Heslo je povinný údaj',
+      'pattern': 'Heslo musí mít alespoň jedno písmeno a alespoň jednu číslici',
+      // 'minlength': 'Password must be at least 4 characters long.',
+      // by trial it is 6, not 4
+      'minlength': 'Heslo musí být minimálně 6 znaků dlouhé.',
+      // 'maxlength': 'Password cannot be more than 40 characters long.',
+      // by trial it is 25, not 40
+      'maxlength': 'Heslo nesmí být delší než 25 znaků',
     }
   };
 

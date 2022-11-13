@@ -5,14 +5,14 @@ import {TalksPresenter} from '../../shared/classes/talks-presenter';
 import {MatDialog} from '@angular/material/dialog';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {AuthService} from '../../services/auth.service';
-import {Talk} from '../../model/talk';
+import {AppUser} from '../../model/appUser';
 
 @Component({
   selector: 'app-rules',
   templateUrl: './data.component.html',
 })
 export class DataComponent extends TalksPresenter  implements OnInit {
-
+  public users = "";
   constructor(
     private dialog: MatDialog,
     afs: AngularFirestore,
@@ -23,6 +23,10 @@ export class DataComponent extends TalksPresenter  implements OnInit {
   }
 
   ngOnInit() {
+    const users = this.usersService.getUsers();
+    users.subscribe((data)=>{
+       this.users = JSON.stringify(data);
+    })
   }
 
   public getTalksJson(){
@@ -31,9 +35,6 @@ export class DataComponent extends TalksPresenter  implements OnInit {
 
   public clearedTalks(){
     const out: any[] = [];
-    const clearTalk = (talk: Talk)=>{
-
-    }
     for(let talk of this.talksView){
       out.push({
         id: talk.talkId,

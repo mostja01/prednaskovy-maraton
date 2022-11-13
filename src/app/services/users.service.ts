@@ -12,6 +12,10 @@ export class UsersService {
   constructor(private afs: AngularFirestore) {
   }
 
+  public getUsers(){
+    return this.afs.collection<AppUser[]>('users').valueChanges();
+  }
+
   public getUserById(userId: string): Observable<AppUser> {
     return this.afs.collection<AppUser[]>('users')
       .doc<AppUser>(userId)

@@ -8,6 +8,7 @@ export class AppUser {
   public sosnidane: boolean = false;
   public sobed: boolean = false;
   public sovecere: boolean = false;
+  public willSleep: boolean = false;
   public student: boolean = false;
   public willAttend: boolean = false;
   public isAdmin = false;
@@ -42,7 +43,8 @@ export class AppUser {
       sobed: this.sobed,
       sovecere: this.sovecere,
       student: this.student,
-      willAttend: this.willAttend
+      willAttend: this.willAttend,
+      willSleep: this.willSleep
     };
   }
 }
