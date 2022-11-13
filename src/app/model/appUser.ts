@@ -1,26 +1,31 @@
 import {AngularFirestoreDocument} from '@angular/fire/compat/firestore';
 
 export class AppUser {
-  public id: string = null;
-  public email: string = null;
-  public name: string = null;
-  public pavecere: boolean = null;
-  public sosnidane: boolean = null;
-  public sobed: boolean = null;
-  public sovecere: boolean = null;
-  public student: boolean = null;
+  public id: string = '';
+  public email: string = '';
+  public name: string = '';
+  public pavecere: boolean = false;
+  public sosnidane: boolean = false;
+  public sobed: boolean = false;
+  public sovecere: boolean = false;
+  public student: boolean = false;
   public willAttend: boolean = false;
+  public isAdmin = false;
 
   constructor(data: any, public fireStoreUser: AngularFirestoreDocument<AppUser>) {
     if (data) {
       Object.keys(data).forEach((key) => {
+        // @ts-ignore
         this[key] = data[key];
       });
+      if (this.id.indexOf('TFaYc9jd5sMuCmJT5Tk') === 0) {
+        this.isAdmin = true;
+      }
     }
   }
 
   public hasAllObligatoryFields(): boolean {
-    return this.email && !!this.name;
+    return !!(this.email && !!this.name);
   }
 
   public patch(): Promise<any> {

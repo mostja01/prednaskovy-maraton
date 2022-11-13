@@ -29,6 +29,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import {DataComponent} from './components/data/data.component';
+import {AdminGuard} from './services/admin.guard';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
     NavComponent,
     TalksComponent,
     RulesComponent,
+    DataComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,8 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
     TalksModule
   ],
   providers: [
-    AuthService
+    AuthService,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

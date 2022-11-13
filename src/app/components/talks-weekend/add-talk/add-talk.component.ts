@@ -13,11 +13,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./add-talk.component.css']
 })
 export class AddTalkComponent {
-  public user: AppUser = null;
-  public talk: Talk = null;
+  public user: AppUser | null = null;
+  public talk: Talk | null = null;
   public isUploading = false;
   public isEditing = false;
-  public addTalkForm: FormGroup;
+  public addTalkForm: FormGroup = new FormGroup({});
   public durations = [
     {value: '0:20'},
     {value: '0:50'},
@@ -25,7 +25,7 @@ export class AddTalkComponent {
     {value: '0:110'},
   ];
   public lines: TopicLine[] = [];
-  private itemsCollection: AngularFirestoreCollection<Talk[]>;
+  private itemsCollection: AngularFirestoreCollection<Talk[]> | null = null;
 
   constructor(public dialogRef: MatDialogRef<AddTalkComponent>,
               public fb: FormBuilder,
@@ -60,7 +60,10 @@ export class AddTalkComponent {
   }
 
   public createTalk() {
-    Object.keys(this.addTalkForm.controls).map(e => this.addTalkForm.controls[e]).forEach(c => c.markAsTouched());
+    if(!this.user){
+      return;
+    }
+    Object.keys(this.addTalkForm.controls).map(e => this.addTalkForm?.controls[e]).forEach(c => c?.markAsTouched());
     if (!this.addTalkForm.valid) {
       return;
     }
@@ -70,7 +73,7 @@ export class AddTalkComponent {
     if (!this.isEditing) {
       newTalk.created = new Date().toISOString();
     }
-    newTalk.lineName = this.lines.filter((line) => line.id === this.addTalkForm.get('lineId').value)[0].name;
+    newTalk.lineName = this.lines.filter((line) => line.id === this.addTalkForm?.get('lineId')?.value)[0].name;
     newTalk.color = randomColor();
     this.itemsCollection = this.afs.collection<Talk[]>('talks');
 

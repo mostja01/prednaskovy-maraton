@@ -1,19 +1,20 @@
-<div class="talk" [style.borderColor]="talk.line.color" (click)="openTalkDialog(talk)">
-  <div class="label" [style.backgroundColor]="talk.line.color" *ngIf="showVotes">
+<div
+  class="talk" [style.borderColor]="talk.line?.color" (click)="openTalkDialog(talk)">
+  <div class="label" [style.backgroundColor]="talk.line?.color" *ngIf="showVotes">
     {{talk.votesCount}}&nbsp;hlasů
   </div>
   <div class="talkHeader">
     <span class="bold">{{talk.name.substr(0, 80)}}<span *ngIf="talk.name.length > 80">...</span></span>
   </div>
   <div class="talkContent">
-    {{talk?.description?.substr(0, 160)}}<span *ngIf="talk?.description?.length > 160">...</span>
+    {{talk.description?.substr(0, 160)}}<span *ngIf="(talk.description!.length || 0) > 160">...</span>
   </div>
   <div class="talkTopicLine">
     <span *ngIf="talk.line" [ngStyle]="{color: talk.line.color}">
       {{talk.line.name}}
     </span>
   </div>
-  <div class="talkFooter" [style.backgroundColor]="talk.line.color">
+  <div class="talkFooter" [style.backgroundColor]="talk.line?.color">
     <span>{{talk.userName}}</span>
     <div *ngIf="showVoteButton">
       <div class="vote" (click)="$event.preventDefault();$event.stopPropagation()">

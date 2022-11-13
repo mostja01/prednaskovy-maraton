@@ -11,7 +11,7 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  public user: AppUser = null;
+  public user: AppUser | null = null;
   navbarOpen = false;
 
   toggleNavbar() {

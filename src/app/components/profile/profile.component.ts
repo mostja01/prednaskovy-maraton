@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {TalksPresenter} from '../../shared/classes/talks-presenter';
 import {AppUser} from '../../model/appUser';
 import {AuthService} from '../../services/auth.service';
@@ -15,25 +15,24 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent extends TalksPresenter implements OnInit {
-  public profileForm;
-  public user: AppUser = null;
+  public profileForm: any;
   public savedNotice: boolean = false;
   public registrationClosed = false;
 
   constructor(private auth: AuthService,
               private dialog: MatDialog,
-              public afs: AngularFirestore,
-              public topicLinesService: TopicLinesService,
+              afs: AngularFirestore,
+              topicLinesService: TopicLinesService,
               private fb: FormBuilder) {
     super(afs, topicLinesService, auth);
   }
 
   public hasAllObligatoryFields(): boolean {
-    return !this.user || this.user.hasAllObligatoryFields();
+    return !this.user || this.user?.hasAllObligatoryFields();
   }
 
   public ngOnInit() {
-    this.auth.userData.subscribe((userData: AppUser) => {
+    this.auth.userData.subscribe((userData: any) => {
       if (userData === null) {
         return;
       }
@@ -43,7 +42,7 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
   }
 
   public get myOrderedTalks() {
-    const myTalks = this.talksView.filter((talk: Talk) => talk.userId === this.user.id);
+    const myTalks = this.talksView.filter((talk: Talk) => talk.userId === this.user?.id);
     return myTalks.sort((a, b) => {
       if (b.voters.length === a.voters.length) {
         if (b.name > a.name) {
@@ -58,15 +57,15 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
 
   public buildForm(): void {
     this.profileForm = this.fb.group({
-      name: new FormControl(this.user.name || this.auth.lastUsedName, [
+      name: new FormControl(this.user?.name || this.auth.lastUsedName, [
         Validators.required,
         Validators.minLength(1)]),
-      pavecere: [this.user.pavecere],
-      sosnidane: [this.user.sosnidane],
-      sobed: [this.user.sobed],
-      sovecere: [this.user.sovecere],
-      student: [this.user.student],
-      email: new FormControl({value: this.user.email, disabled: true}, Validators.required),
+      pavecere: [this.user?.pavecere],
+      sosnidane: [this.user?.sosnidane],
+      sobed: [this.user?.sobed],
+      sovecere: [this.user?.sovecere],
+      student: [this.user?.student],
+      email: new FormControl({value: this.user?.email, disabled: true}, Validators.required),
     });
   }
 
@@ -74,16 +73,25 @@ export class ProfileComponent extends TalksPresenter implements OnInit {
     if (!this.profileForm.valid) {
       return;
     }
+    if (!this.user) {
+      return;
+    }
     this.user.willAttend = true;
     this.patchUser();
   }
 
   public cancelRegistration() {
+    if (!this.user) {
+      return;
+    }
     this.user.willAttend = false;
     this.patchUser();
   }
 
   public patchUser() {
+    if (!this.user) {
+      return;
+    }
     this.user.name = this.profileForm.get('name').value;
     this.user.pavecere = this.profileForm.get('pavecere').value;
     this.user.sosnidane = this.profileForm.get('sosnidane').value;

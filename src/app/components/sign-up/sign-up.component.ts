@@ -10,7 +10,7 @@ import {AppUser} from '../../model/appUser';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-  public userForm: FormGroup;
+  public userForm!: FormGroup;
   public isUnknownError = false;
   public passReset = false; // set to true when password reset is triggered
   public formErrors = {
@@ -78,7 +78,7 @@ export class SignUpComponent implements OnInit {
 
   private updateUserData() {
     let user: AppUser;
-    this.auth.userData.subscribe((userData: AppUser) => {
+    this.auth.userData.subscribe((userData: any) => {
       if (userData === null) {
         return;
       }
@@ -94,17 +94,20 @@ export class SignUpComponent implements OnInit {
     if (!this.userForm) {
       return;
     }
-    this.auth.lastUsedName = this.userForm.get('name').value;
+    this.auth.lastUsedName = this.userForm.get('name')?.value;
     const form = this.userForm;
     for (const field in this.formErrors) {
       if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {
         // clear previous error message (if any)
+        // @ts-ignore
         this.formErrors[field] = '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
+          // @ts-ignore
           const messages = this.validationMessages[field];
           for (const key in control.errors) {
             if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
+              // @ts-ignore
               this.formErrors[field] += messages[key] + ' ';
             }
           }

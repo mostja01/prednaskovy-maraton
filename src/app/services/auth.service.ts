@@ -9,27 +9,14 @@ import firebase from 'firebase/compat/app';
 import User = firebase.User;
 import auth = firebase.auth;
 
-
-// export function createListValueChanges<T>(query: DatabaseQuery) {
-//   return function valueChanges<T>(events?: ChildEvent[]): Observable<T[]> {
-//     events = validateEventsArray(events);
-//     return listChanges<T>(query, events!)
-//       .map(changes => changes.map(change => {
-//         console.log(changes)
-//         const data = change.payload.snapshot!.val()
-//         return  { $key: change.key, ...data }
-//       }))
-//   }
-// }
-
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public authState: any = null;
-  public userData: BehaviorSubject<AppUser> = new BehaviorSubject<AppUser>(null);
-  public userDataRef: AngularFirestoreDocument<any> = null;
-  public lastUsedName: string = null;
+  public userData: BehaviorSubject<AppUser | null> = new BehaviorSubject<AppUser | null>(null);
+  public userDataRef: AngularFirestoreDocument<any> | null = null;
+  public lastUsedName: string | null = null;
 
   constructor(private router: Router,
               public afAuth: AngularFireAuth,
@@ -45,18 +32,18 @@ export class AuthService {
       this.userDataRef.valueChanges().pipe(take(1)).subscribe((userRefData: any) => {
         if (userRefData) {
           userRefData.id = this.authState.uid;
-          this.userData.next(new AppUser(userRefData, this.userDataRef));
+          this.userData.next(new AppUser(userRefData, this.userDataRef as any));
         } else {
           const newUserData: any = {
             email: this.authState.email,
             name: this.authState.displayName
           };
-          this.userDataRef.set(newUserData)
+          this.userDataRef?.set(newUserData)
             .then((setEvent) => {
               console.log('new user created', userRefData, setEvent);
             });
           newUserData.id = this.authState.uid;
-          this.userData.next(new AppUser(newUserData, this.userDataRef));
+          this.userData.next(new AppUser(newUserData, this.userDataRef as any));
         }
       });
     });
@@ -156,7 +143,7 @@ export class AuthService {
 
   //// Sign Out ////
 
-  private socialSignIn(provider) {
+  private socialSignIn(provider: any) {
     return this.afAuth.signInWithPopup(provider)
       .then((credential) => {
         this.authState = credential.user;

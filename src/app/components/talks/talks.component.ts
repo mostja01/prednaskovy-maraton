@@ -14,7 +14,6 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
   styleUrls: ['./talks.component.css']
 })
 export class TalksComponent extends TalksPresenter implements OnInit {
-  public user: AppUser = null;
   // universalTalk = {
   //   color: '#e5e186',
   //   created: new Date(),
@@ -68,14 +67,14 @@ export class TalksComponent extends TalksPresenter implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    public afs: AngularFirestore,
+    afs: AngularFirestore,
     private auth: AuthService,
-    public topicLinesService: TopicLinesService) {
+    topicLinesService: TopicLinesService) {
     super(afs, topicLinesService, auth);
   }
 
   public ngOnInit() {
-    this.auth.userData.subscribe((userData: AppUser) => {
+    this.auth.userData.subscribe((userData: any) => {
       this.user = userData;
     });
   }

@@ -14,13 +14,12 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
   styleUrls: ['./talks-weekend.component.css']
 })
 export class TalksWeekendComponent extends TalksPresenter implements OnInit {
-  public user: AppUser = null;
 
   constructor(
               private dialog: MatDialog,
-              public afs: AngularFirestore,
+              afs: AngularFirestore,
               private auth: AuthService,
-              public topicLinesService: TopicLinesService) {
+              topicLinesService: TopicLinesService) {
     super(afs, topicLinesService, auth);
   }
 
@@ -54,7 +53,7 @@ export class TalksWeekendComponent extends TalksPresenter implements OnInit {
   }
 
   public ngOnInit() {
-    this.auth.userData.subscribe((userData: AppUser) => {
+    this.auth.userData.subscribe((userData: any) => {
       this.user = userData;
     });
   }

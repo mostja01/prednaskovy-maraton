@@ -14,7 +14,7 @@ export class TalksPresenter {
   public talks: Observable<DocumentChangeAction<any>[]>;
   public talksCollection: AngularFirestoreCollection<Talk[]>;
   public talksView: Array<Talk> = [];
-  public user: AppUser = null;
+  public user: AppUser | null = null;
   private topicLines: Array<TopicLine> = [];
 
   constructor(public afs: AngularFirestore,
@@ -85,7 +85,7 @@ export class TalksPresenter {
 
   private fillLinesData() {
     if (this.topicLines.length > 0 && this.talksView.length > 0) {
-      const linesMap = Utils.mapById(this.topicLines);
+      const linesMap: any = Utils.mapById(this.topicLines as any);
       this.talksView.forEach((talk: Talk) => {
         if (talk.lineId) {
           talk.line = linesMap[talk.lineId];

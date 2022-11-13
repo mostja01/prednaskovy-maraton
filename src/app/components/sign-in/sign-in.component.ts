@@ -9,8 +9,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit, OnDestroy {
-  public signInForm: FormGroup;
-  public subscription;
+  public signInForm!: FormGroup;
+  public subscription!: any;
   public isUnknownError = false;
   public isInvalidCredentials = false;
   public formErrors = {
@@ -82,12 +82,15 @@ export class SignInComponent implements OnInit, OnDestroy {
     for (const field in this.formErrors) {
       if (Object.prototype.hasOwnProperty.call(this.formErrors, field)) {
         // clear previous error message (if any)
+        // @ts-ignore
         this.formErrors[field] = '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
+          // @ts-ignore
           const messages = this.validationMessages[field];
           for (const key in control.errors) {
             if (Object.prototype.hasOwnProperty.call(control.errors, key)) {
+              // @ts-ignore
               this.formErrors[field] += messages[key] + ' ';
             }
           }

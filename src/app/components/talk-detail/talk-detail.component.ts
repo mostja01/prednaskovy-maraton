@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import { AddTalkComponent } from '../talks-weekend/add-talk/add-talk.component';
+import {AddTalkComponent} from '../talks-weekend/add-talk/add-talk.component';
 import {AppUser} from '../../model/appUser';
 import {Talk} from '../../model/talk';
 import {AuthService} from '../../services/auth.service';
@@ -13,17 +13,19 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
 })
 export class TalkDetailComponent {
   public talk: Talk;
-  public user: AppUser = null;
+  public user!: AppUser;
 
   constructor(public dialogRef: MatDialogRef<TalkDetailComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private dialog: MatDialog,
               public authService: AuthService,
               private afs: AngularFirestore,
-              ) {
+  ) {
     this.talk = data.talk;
     this.authService.userData.subscribe((userData) => {
-      this.user = userData;
+      if (userData) {
+        this.user = userData;
+      }
     });
   }
 

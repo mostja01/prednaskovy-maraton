@@ -10,6 +10,8 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {TalksComponent} from './components/talks/talks.component';
 import {TalksWeekendComponent} from './components/talks-weekend/talks-weekend.component';
 import {RulesComponent} from './components/rules/rules.component';
+import {DataComponent} from './components/data/data.component';
+import {AdminGuard} from './services/admin.guard';
 
 const routes: Routes = [
   {
@@ -51,6 +53,11 @@ const routes: Routes = [
   {
     path: 'rules',
     component: RulesComponent,
+  },
+  {
+    path: 'data',
+    component: DataComponent,
+    canActivate: [AdminGuard]
   },
 ];
 

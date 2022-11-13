@@ -11,7 +11,7 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
   providedIn: 'root',
 })
 export class TopicLinesService {
-  public topicLines: BehaviorSubject<TopicLine[]> = new BehaviorSubject([]);
+  public topicLines: BehaviorSubject<TopicLine[]> = new BehaviorSubject<TopicLine[]>([]);
 
   constructor(private afs: AngularFirestore,
               // private users: UsersService,

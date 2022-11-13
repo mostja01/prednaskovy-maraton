@@ -12,9 +12,9 @@ import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/compat/f
 })
 export class TalkPreviewComponent {
   @Input()
-  public talk: Talk;
+  public talk!: Talk;
   @Input()
-  public user: AppUser;
+  public user: AppUser | null = null;
   @Input()
   public showVotes: boolean = true;
 
@@ -47,10 +47,16 @@ export class TalkPreviewComponent {
     if (this.isVoteInProgress) {
       return;
     }
+    if (!this.talk) {
+      return;
+    }
+    if (!this.user) {
+      return;
+    }
     this.isVoteInProgress = true;
     const itemsCollection = this.afs.collection<Talk[]>('talks');
     const talkDocument: AngularFirestoreDocument<Talk> = itemsCollection.doc(this.talk.talkId);
-    if (this.talk.voters.findIndex((voterId) => voterId === this.user.id) >= 0) {
+    if (this.talk.voters?.findIndex((voterId) => voterId === this.user?.id) >= 0) {
       this.isVoteInProgress = false;
       return;
     }
@@ -66,10 +72,16 @@ export class TalkPreviewComponent {
     if (this.isVoteInProgress) {
       return;
     }
+    if (!this.talk) {
+      return;
+    }
+    if (!this.user) {
+      return;
+    }
     this.isVoteInProgress = true;
     const itemsCollection = this.afs.collection<Talk[]>('talks');
     const talkDocument: AngularFirestoreDocument<Talk> = itemsCollection.doc(this.talk.talkId);
-    if (this.talk.voters.findIndex((voterId) => voterId === this.user.id) === -1) {
+    if (this.talk.voters.findIndex((voterId) => voterId === this.user?.id) === -1) {
       return;
     }
     const userIndex = this.talk.voters.indexOf(this.user.id);

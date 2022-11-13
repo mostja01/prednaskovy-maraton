@@ -1,13 +1,17 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
           (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" (click)="closeNavbar()" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">O akci</a>
+        <img src="assets/img/logo.png" alt="logo" style="width: 38px;height: 38px"/>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="closeNavbar()" routerLink="/" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">O akci</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="closeNavbar()" routerLink="/talks" routerLinkActive="active">Přednášky</a>
@@ -19,7 +23,7 @@
 
     <ul class="nav navbar-nav navbar-right" *ngIf="authService.userData | async">
       <li class="loggedUser">
-        <a (click)="closeNavbar()" routerLink="/profile">{{user.name || user.email}}</a>
+        <a (click)="closeNavbar()" routerLink="/profile">{{user?.name || user?.email}}</a>
       </li>
       <li class="loggedUser">
         <a href="javascript:" (click)="closeNavbar(); logOut()">Odhlásit</a>
