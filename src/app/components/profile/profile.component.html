@@ -35,7 +35,8 @@
       >
 <div class="row">
   <div class="col">
-    <p><strong>Vstup na akci je zdarma</strong><br>Přespání (přes celou akci) je zpoplatněno <strong>200 Kč při platbě předem</strong>, 250 při platbě na místě.</p>
+    <p><strong>Vstup na akci je zdarma.</strong>
+      <br>Přespání je zpoplatněno 200 Kč při platbě předem, 250 při platbě na místě.</p>
       <div class="row">
         <div class="col-md-10">
           <strong>Budu přespávat:</strong>
@@ -51,7 +52,7 @@
           </div>
         </div>
       <div class="row">
-        Jídlo bude ještě doplněno.
+        Jídlo pro vás ještě připravujeme
     </div>
        <p hidden>
           <div class="row">
@@ -96,7 +97,7 @@
         </div>
       </div>
   </p>
-      <br>
+      <br><br>
       <div class="row">
         <div class="col-md-10">
           Jsem student střední/vysoké školy:
@@ -105,6 +106,7 @@
           <mat-checkbox name="student" formControlName="student"></mat-checkbox>
         </div>
       </div>
+        <br>
       <div
         *ngIf="user.email && getAmount()"
         class="row">
@@ -131,8 +133,6 @@
   </div>
   <div class="ownTalks">
     <h1>Moje přednášky</h1>
-    <div class="row">
-      <h2>Registrované přednášky</h2>
     </div>
     <div *ngIf="user !== null" class="row m-2 mb-3">
       <!--<ngb-alert type="warning" [dismissible]="false">-->
