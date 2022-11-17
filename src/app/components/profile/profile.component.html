@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-md-12">
           <mat-form-field>
-            <input matInput type="text" id="name" class="input" placeholder="Nick nebo jméno*" formControlName="name">
+            <input matInput type="text" id="name" class="input" placeholder="Nick nebo jméno" formControlName="name">
           </mat-form-field>
         </div>
       </div>
@@ -35,11 +35,10 @@
       >
 <div class="row">
   <div class="col">
-    <p><strong>Vstup na akci je zdarma</strong></p>
-    <p>Přespání (přes celou akci) je zpoplatněno <strong>200 Kč při platbě předem</strong>, 250 při platbě na místě.</p>
+    <p><strong>Vstup na akci je zdarma</strong><br>Přespání (přes celou akci) je zpoplatněno <strong>200 Kč při platbě předem</strong>, 250 při platbě na místě.</p>
       <div class="row">
         <div class="col-md-10">
-          Budu přespávat:
+          <strong>Budu přespávat:</strong>
         </div>
         <div class="col-md-2">
           <mat-checkbox name="willSleep" formControlName="willSleep"></mat-checkbox>
@@ -51,7 +50,11 @@
             <strong>Stravování:</strong>
           </div>
         </div>
-        <div class="row">
+      <div class="row">
+        Jídlo bude ještě doplněno.
+    </div>
+       <p hidden>
+          <div class="row">
           <div class="col-md-10">
             Pátek večeře - párky + pečivo {{pricelist['pavecere']}} Kč:
           </div>
@@ -92,6 +95,7 @@
           </div>
         </div>
       </div>
+  </p>
       <br>
       <div class="row">
         <div class="col-md-10">
