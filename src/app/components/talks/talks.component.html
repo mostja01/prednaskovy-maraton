@@ -25,7 +25,7 @@
       <p>Přednášky budou probíhat už od pátečního večera, do nedělních ranních hodin. Harmonogram přednášek bude hotov v posledních týdnech před akcí. Pokud byste měli p</p>
       <h5 *ngIf="newAddedTalks.length > 0">Nedávno přidané</h5>
       <app-talk-preview *ngFor="let talk of newAddedTalks" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
-      <h5>Další přednášky</h5>
+      <h5>Všechny přednášky</h5>
       <app-talk-preview *ngFor="let talk of orderedTalksOthers" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
 
     </div>
