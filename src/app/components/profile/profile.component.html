@@ -33,10 +33,24 @@
       <div
         *ngIf="user.willAttend && !registrationClosed"
       >
+<div class="row">
+  <div class="col">
+    <p><strong>Vstup na akci je zdarma</strong></p>
+    <p>Přespání (přes celou akci) je zpoplatněno <strong>200 Kč při platbě předem</strong>, 250 při platbě na místě.</p>
+
 
         <div class="row">
+        <div class="col-md-10">
+          Budu přespávat:
+        </div>
+        <div class="col-md-2">
+          <mat-checkbox name="willSleep" formControlName="willSleep"></mat-checkbox>
+        </div>
+      </div>
+        </br>
+        <div class="row">
           <div class="col-md-12">
-            Stravování:
+            <strong>Stravování:</strong>
           </div>
         </div>
         <div class="row">
@@ -89,19 +103,10 @@
           <mat-checkbox name="student" formControlName="student"></mat-checkbox>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-10">
-          Budu přespávat:
-        </div>
-        <div class="col-md-2">
-          <mat-checkbox name="willSleep" formControlName="willSleep"></mat-checkbox>
-        </div>
-      </div>
       <div
-        *ngIf="user.willSleep"
+        *ngIf="user.email && getAmount()"
         class="row">
         <div class="col">
-          <p><strong>Poplatek za přespání je 200 Kč při platbě předem, 250 Kč při platbě na místě</strong></p>
           <p><strong>Poplatek zašlete na účet 2900784428/2010. Do poznámky zadejte svůj email.</strong></p>
         </div>
       </div>
