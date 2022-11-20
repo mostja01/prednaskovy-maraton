@@ -1,6 +1,7 @@
 <div class="container talks">
   <div [class.hide]="!(talks | async)">
     <h1>Přednášky</h1>
+
     <section>
       <div>
         Cílem přednáškového maratonu je vzájemná výměna znalostí. Každý zde může mít svoji přednášku, stejně tak lze navštívit přednášky ostatních lektorů. Většina přednášek spadá do určitého tematického okruhu. Máte-li pocit, že Vaše přednáška nespadá do žádného tematického okruhu nebo nějaký tematický okruh chybí, tak prosím kontaktujte organizátory.
@@ -20,58 +21,56 @@
       <br>
       <p>Přednášky budou probíhat už od pátečního večera, do nedělních ranních hodin. Harmonogram přednášek bude hotov pár týdnů před akcí. Pokud byste měli preference o času vaší přednášky, tak neváhejte napsat.</p>
     </section>
-    <div class="talkList">
-      <section>
-        <h5 *ngIf="orderedTalksMain.length > 0">Vybrané přednášky</h5>
-        <app-talk-preview *ngFor="let talk of orderedTalksMain" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
-      </section>
 
-      <section style="background-color: aliceblue; position: relative; padding: 10px; margin: 10px 0">
-        <ng-container *ngIf="{index:0, length: newAddedTalks.length} as locals">
-          <h5 *ngIf="locals.length > 0">Nedávno přidané</h5>
+    <section>
+      <h5 *ngIf="orderedTalksMain.length > 0">Vybrané přednášky</h5>
+      <app-talk-preview *ngFor="let talk of orderedTalksMain" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
+    </section>
+
+    <section class="position-relative p-3" style="background-color: rgb(var(--bs-light-rgb))">
+      <ng-container *ngIf="{ index: 0, length: newAddedTalks.length } as locals">
+        <h5 *ngIf="locals.length > 0">Nedávno přidané</h5>
           <div class="d-flex align-items-center">
-              <button
-                (click)="locals.index = locals.index - 1"
-                [disabled]="locals.index <= 0"
-                class="position-absolute rounded-circle"
-                style="left: 20px; transform: scale(1.5)"
-                *ngIf="locals.length > 3"
+            <button
+              (click)="locals.index = locals.index - 1"
+              [disabled]="locals.index <= 0"
+              class="position-absolute rounded-circle"
+              style="left: 20px; transform: scale(1.5)"
+              *ngIf="locals.length > 3"
+            >
+              <
+            </button>
+            <div
+              class="flex-row d-flex"
+              style="transform: scale(80%)"
+              [style.justify-content]="locals.length > 2 ? 'space-between' : 'space-evenly'"
+            >
+              <app-talk-preview
+                *ngFor="let talk of newAddedTalks.slice(locals.index, locals.index + 3)"
+                [talk]="talk"
+                [user]="user"
+                [showVotes]="!!(authService.userData | async)"
+              ></app-talk-preview>
+            </div>
+            <button
+              (click)="locals.index = locals.index + 1"
+              [disabled]="locals.index + 3 >= locals.length"
+              class="position-absolute rounded-circle"
+              style="right: 20px; transform: scale(1.5)"
+              *ngIf="locals.length > 3"
+            >
               >
-                <
-              </button>
-              <div
-                class="flex-row d-flex"
-                style="transform: scale(80%)"
-                [style.justify-content]="locals.length > 2 ? 'space-between' : 'space-evenly'"
-              >
-                <app-talk-preview
-                  *ngFor="let talk of newAddedTalks.slice(locals.index, locals.index + 3)"
-                  [talk]="talk"
-                  [user]="user"
-                  [showVotes]="!!(authService.userData | async)"
-                ></app-talk-preview>
-              </div>
-              <button
-                (click)="locals.index = locals.index + 1"
-                [disabled]="locals.index + 3 >= locals.length"
-                class="position-absolute rounded-circle"
-                style="right: 20px; transform: scale(1.5)"
-                *ngIf="locals.length > 3"
-              >
-                >
-              </button>
+            </button>
           </div>
         </ng-container>
     </section>
 
-      <section>
-        <h5>Všechny přednášky</h5>
-        <div style="display: flex; justify-content: space-between; flex-wrap: wrap">
-
-          <app-talk-preview *ngFor="let talk of orderedTalksOthers" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
-        </div>
-      </section>
-    </div>
+    <section>
+      <h5>Všechny přednášky</h5>
+      <div class="d-flex justify-content-between flex-wrap">
+        <app-talk-preview *ngFor="let talk of orderedTalksOthers" [talk]="talk" [user]="user" [showVotes]="!!(authService.userData | async)"></app-talk-preview>
+      </div>
+    </section>
   </div>
   <div *ngIf="!(talks | async)">
     Načítám
